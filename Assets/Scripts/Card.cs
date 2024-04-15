@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // x = -1.65f + i * 1.1f
-    // y = -3f + j * 1.38f
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,4 +16,9 @@ public class Card : MonoBehaviour
     {
         
     }
+
+    public void CardClick()
+    {
+        Debug.Log("카드 클릭");
+    }    
 }
