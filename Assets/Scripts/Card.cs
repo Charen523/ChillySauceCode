@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    
+    public SpriteRenderer spriteRenderer;
+
+    public int idx;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,11 @@ public class Card : MonoBehaviour
         
     }
 
+    public void CardSpriteSetting(int number)
+    {
+        idx = number;
+        spriteRenderer.sprite = Resources.Load<Sprite>($"Images/Sprite{idx}");
+    }
     public void CardClick()
     {
         Debug.Log("카드 클릭");

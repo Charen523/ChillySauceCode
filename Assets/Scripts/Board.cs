@@ -20,6 +20,7 @@ public class Board : MonoBehaviour
             float y = (i / 4) * 1.4f - 3f;
 
             GameObject go = Instantiate(card, new Vector2(x, y), Quaternion.identity, transform);
+            go.GetComponent<Card>().CardSpriteSetting(cardArray[i]);
         }
     }
 
