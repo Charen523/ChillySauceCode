@@ -14,4 +14,14 @@ public class StratBtn : MonoBehaviour
             SceneManager.LoadScene("MainScene");
         }
     }
+
+    void GithubTest()
+    {
+        Debug.Log("마이크? 테스트!");
+    }
+
+    void Charen()
+    {
+        Debug.Log("삭제 요망");
+    }
 }
