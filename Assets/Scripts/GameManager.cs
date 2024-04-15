@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public AudioClip clip;
+
+    AudioSource audioSource;
 
     public Text timetext;
     public Text endText;
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
        Time.timeScale = 1.0f;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,6 +62,8 @@ public class GameManager : MonoBehaviour
     {
         if ( firstCard.idx == secondCard.idx)
         {
+            audioSource.PlayOneShot(clip);
+
             firstCard.DestoryCard();
             secondCard.DestoryCard();
 
