@@ -28,4 +28,16 @@ public class Card : MonoBehaviour
     {
         Debug.Log("카드 클릭");
     }    
+
+    public void DestoryCard()
+    {
+
+    }
+
+    public void CloseCard()
+    {
+
+    }
+
+   
 }

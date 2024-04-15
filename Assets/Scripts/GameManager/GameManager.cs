@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,11 +39,11 @@ public class GameManager : MonoBehaviour
 
         timetext.text = time.ToString("N2");
 
-        if ( time > endTime)
+        /*if ( time > endTime)
         {
             Time.timeScale = 0;
             endText.gameObject.SetActive(true);
-        }
+        }*/
     }
 
     void Singleton()
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void ReTry()
     {
-
+        SceneManager.LoadScene("MainScene");
     }
    
 }
