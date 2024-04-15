@@ -32,17 +32,20 @@ public class Card : MonoBehaviour
     }
     public void CardClick()
     {
-        if (!GameManager.Instance.isMatching)
-        {
-            anim.SetBool("isOpen", true);
-            front.SetActive(true);
-            back.SetActive(false);
-            if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
-            else
+        if (PauseBtn.isPaused == false)
+        { 
+            if (!GameManager.Instance.isMatching)
             {
-                GameManager.Instance.secondCard = this;
-                GameManager.Instance.Matched();
-                GameManager.Instance.isMatching = true;
+                anim.SetBool("isOpen", true);
+                front.SetActive(true);
+                back.SetActive(false);
+                if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
+                else
+                {
+                    GameManager.Instance.secondCard = this;
+                    GameManager.Instance.Matched();
+                    GameManager.Instance.isMatching = true;
+                }
             }
         }
     }
