@@ -5,12 +5,15 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
+    public AudioClip clip;
+
+    AudioSource audioSource;    
 
     public int idx;
     // Start is called before the first frame update
     void Start()
     {
-        //칠리소스코드 예제입니다. 
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +35,11 @@ public class Card : MonoBehaviour
     public void DestoryCard()
     {
 
+    }
+
+    public void OpenCard()
+    {
+        audioSource.PlayOneShot(clip);
     }
 
     public void CloseCard()
