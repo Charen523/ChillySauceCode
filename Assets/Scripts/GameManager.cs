@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
+    
+
     public void Awake()
     {
         Singleton();
