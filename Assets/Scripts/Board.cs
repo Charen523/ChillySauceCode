@@ -12,7 +12,6 @@ public class Board : MonoBehaviour
     {
         int[] cardArray = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7};
         cardArray = ShuffleArray(cardArray);
-        Debug.Log($"{string.Join(", ", cardArray)}");   //섞인 배열의 결과 출력
 
         for (int i = 0; i < cardArray.Length; i++)
         {

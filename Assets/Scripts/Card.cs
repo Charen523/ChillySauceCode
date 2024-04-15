@@ -61,7 +61,6 @@ public class Card : MonoBehaviour
 
     public IEnumerator DestroyCardCoroutine()
     {
-        Debug.Log("CloseCard 호출");
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         GameManager.Instance.isMatching = false;
@@ -69,7 +68,6 @@ public class Card : MonoBehaviour
 
     public IEnumerator CloseCardCoroutine()
     {
-        Debug.Log("DestoryCard 호출");
         yield return new WaitForSeconds(1f);
         anim.SetBool("isOpen", false);
         front.SetActive(false);
