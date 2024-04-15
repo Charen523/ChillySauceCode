@@ -49,8 +49,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0f;
-            endText.gameObject.SetActive(true);
+            StartCoroutine("EndGame");
         }
         /*if ( time > endTime)
         {
@@ -76,12 +75,6 @@ public class GameManager : MonoBehaviour
             Invoke("SoundInvoke", 1f);
 
             cardCount -= 2;
-
-            if ( cardCount == 0)
-            {
-                Time.timeScale = 0;
-                endText.gameObject.SetActive(true);
-            }
         }
         else
         {
@@ -102,5 +95,12 @@ public class GameManager : MonoBehaviour
     {
         audioSource.PlayOneShot(clip);
     }
-   
+
+    
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        endText.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
 }

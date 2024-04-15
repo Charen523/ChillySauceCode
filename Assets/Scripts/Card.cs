@@ -74,9 +74,4 @@ public class Card : MonoBehaviour
         back.SetActive(true);
         GameManager.Instance.isMatching = false;
     }
-    void Charen()
-    {
-        Debug.Log("ªË¡¶ ø‰∏¡");
-    }
-}
 }
