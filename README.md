@@ -1,5 +1,9 @@
 # ChillySauceCode
 # 김영선 (재수정)
+* MBTI : ISFP
+* 나이 : 25
+* GITHUB : https://github.com/Mrdosim
+* 블로그 : https://mrdosim.tistory.com/
 # 이승영 (재수정)
 * MBTI : ISTP
 * 나이 : 28
