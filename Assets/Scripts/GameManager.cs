@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public int cardCount;
 
-    
+    public bool isMatching;
 
     // 추후 카드 오브젝트가 완성되면 넣어준다.
     public Card firstCard;
@@ -28,21 +28,30 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         Singleton();
+        Time.timeScale = 1f;
+        cardCount = 16;
     }
     // Start is called before the first frame update
     void Start()
     {
-       Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
+        isMatching = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
+        if (cardCount > 0)
+        {
+            time += Time.deltaTime;
 
-        timetext.text = time.ToString("N2");
-
+            timetext.text = time.ToString("N2");
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            endText.gameObject.SetActive(true);
+        }
         /*if ( time > endTime)
         {
             Time.timeScale = 0;
