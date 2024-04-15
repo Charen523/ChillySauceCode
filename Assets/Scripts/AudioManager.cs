@@ -35,6 +35,18 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        PauseBGM();
     }
+    public void PauseBGM()
+    {
+        if (PauseBtn.isPaused == true)
+        {
+            audioSource.Pause();
+        }
+        else if (PauseBtn.isPaused == false)
+        {
+            audioSource.UnPause();
+        }
+    }
+
 }
