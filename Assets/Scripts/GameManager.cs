@@ -62,10 +62,9 @@ public class GameManager : MonoBehaviour
     {
         if ( firstCard.idx == secondCard.idx)
         {
-            audioSource.PlayOneShot(clip);
-
-            firstCard.DestoryCard();
-            secondCard.DestoryCard();
+            firstCard.DestroyCard();
+            secondCard.DestroyCard();
+            Invoke("SoundInvoke", 1f);
 
             cardCount -= 2;
 
@@ -88,6 +87,11 @@ public class GameManager : MonoBehaviour
     public void ReTry()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    void SoundInvoke()
+    {
+        audioSource.PlayOneShot(clip);
     }
    
 }
