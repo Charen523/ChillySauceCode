@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
     public GameObject front;
     public GameObject back;
     public Animator anim;
-    public Image backImg;
+    
 
     public int idx;
 
@@ -63,6 +63,9 @@ public class Card : MonoBehaviour
             return;
         }
 
+        if (!GameManager.Instance.isMatching)
+        {
+            audioSource.PlayOneShot(clip);
 
             anim.SetBool("isOpen", true);
             front.SetActive(true);
@@ -80,21 +83,6 @@ public class Card : MonoBehaviour
                 GameManager.Instance.Matched();
                 GameManager.Instance.isMatching = true;
             }
-
-        audioSource.PlayOneShot(clip);
-
-        anim.SetBool("isOpen", true);
-        front.SetActive(true);
-        back.SetActive(false);
-        isCardOpened = true;
-
-        if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
-        else
-        {
-            GameManager.Instance.secondCard = this;
-            GameManager.Instance.Matched();
-            GameManager.Instance.isMatching = true;
-
         }
     }
 
