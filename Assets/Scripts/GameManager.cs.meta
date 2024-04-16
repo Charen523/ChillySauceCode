@@ -3,7 +3,19 @@ guid: 92bf552b18c65d84b9e6e5291c9fc960
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - matchClip: {fileID: 8300000, guid: aea59d712b62ad44aa4018847ca57964, type: 3}
+  - failClip: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
+  - startClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  - anim: {instanceID: 0}
+  - matchPanel: {instanceID: 0}
+  - matchTxt: {instanceID: 0}
+  - tryTxt: {instanceID: 0}
+  - timetext: {instanceID: 0}
+  - endText: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - firstCard: {instanceID: 0}
+  - secondCard: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

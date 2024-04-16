@@ -10,10 +10,13 @@ public class Board : MonoBehaviour
    
     public AudioClip cardMoveSound;
     //카드가 다 생성 되었는지 확인
+    [SerializeField]
     public static bool isCardGenerated;
 
     void Start()
     {
+        isCardGenerated = false;
+
         if (isCardGenerated == false)
         {
             int[] cardArray = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
@@ -50,30 +53,15 @@ public class Board : MonoBehaviour
     // 카드 리스트를 섞는 메서드
     private int[] ShuffleArray(int[] array)
     {
-        int random1, random2, random3, temp;
-        int direction = 0;
+        int random1, random2, temp;
         for(int i = 0; i < array.Length; i++)
         {
             random1 = Random.Range(0, array.Length);
             random2 = Random.Range(0, array.Length);
-            random3 = Random.Range(0, array.Length);
 
-            if(direction == 0)
-            { 
-                temp = array[random1];
-                array[random1] = array[random2];
-                array[random2] = array[random3];
-                array[random3] = temp;
-                direction = 1;
-            }
-            else if(direction == 1)
-            {
-                temp = array[random3];
-                array[random3] = array[random2];
-                array[random2] = array[random1];
-                array[random1] = temp;
-                direction = 1;
-            }
+            temp = array[random1];
+            array[random1] = array[random2];
+            array[random2] = temp;
         }
         return array;
     }

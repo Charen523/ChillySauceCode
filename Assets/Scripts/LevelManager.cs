@@ -111,15 +111,20 @@ public class LevelManager : MonoBehaviour
         // 해당 키가 없다면 각 스테이지에 최단기록을 저장하는 키에 기본값을 넣어주고 UserData키를 저장합니다.
         if (PlayerPrefs.HasKey("UserData") == false)
         {
-            Debug.Log("첫 시작 유저");            
+            Debug.Log("첫 시작 유저");
 
-            PlayerPrefs.SetFloat("Stage1", 60f);
-            PlayerPrefs.SetFloat("Stage2", 60f);
-            PlayerPrefs.SetFloat("Stage3", 60f);
-            PlayerPrefs.SetFloat("Stage4", 60f);
+            PlayerPrefs.SetFloat("Stage1_Time", 0);
+            PlayerPrefs.SetFloat("Stage2_Time", 0);
+            PlayerPrefs.SetFloat("Stage3_Time", 0);
+            PlayerPrefs.SetFloat("Stage4_Time", 0);
+
+            PlayerPrefs.SetInt("Stage1_Score", 0);
+            PlayerPrefs.SetInt("Stage2_Score", 0);
+            PlayerPrefs.SetInt("Stage3_Score", 0);
+            PlayerPrefs.SetInt("Stage4_Score", 0);
 
             PlayerPrefs.SetString("UserData", "record");
-        }
+                    }
     }
 }
 

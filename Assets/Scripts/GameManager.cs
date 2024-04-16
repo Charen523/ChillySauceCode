@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public AudioClip failClip; //카드 맞추기 실패했을 때 쓰이는 효과음.
     public AudioClip startClip; //게임을 시작할 때 나타날 효과음(끝 글씨 클릭시, 스테이지 진입시 들리는 것처럼 연출)
 
+    public AudioClip buttonClip; //끝 버튼에 효과음 구현.
+
     public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
     /*UI 선언*/
@@ -46,6 +48,19 @@ public class GameManager : MonoBehaviour
 
     bool changeMusic = false;
 
+    int score;
+
+    public int bestScore;
+
+    public float bestTime;
+
+    int selectLevel;
+    int unlockLevel;
+
+    public Text bestScoreText;
+    public Text bestTimeText;
+
+
     public void Awake()
     {
         Singleton();
@@ -63,6 +78,15 @@ public class GameManager : MonoBehaviour
         time = startTime - 5 * (LevelManager.Instance.selectLevel - 1);
 
         Invoke("MatchInvoke", 0f); //Match사인 초기화.
+
+        unlockLevel = LevelManager.Instance.unlockLevel;
+        selectLevel = LevelManager.Instance.selectLevel;
+
+        bestScore = PlayerPrefs.GetInt("Stage" + selectLevel + "_Score");
+        bestTime = PlayerPrefs.GetFloat("Stage" + selectLevel + "_Time");
+
+        bestScoreText.text = "최고점수: " + bestScore.ToString();
+        bestTimeText.text = "최단기록: " + bestTime.ToString("N2");
     }
 
     // Update is called once per frame
@@ -164,9 +188,11 @@ public class GameManager : MonoBehaviour
 
     public void ReTry()
     {
+        audioSource.PlayOneShot(buttonClip);
+
         AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
         AudioManager.Instance.audioSource.Play();
-
+        Board.isCardGenerated = false;
         SceneManager.LoadScene("StartScene");
     }
 
@@ -184,18 +210,27 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGame()
     {
-        int unlockLevel = LevelManager.Instance.unlockLevel;
-        int selectLevel = LevelManager.Instance.selectLevel;
+        yield return new WaitForSecondsRealtime(1f);
+        endText.gameObject.SetActive(true);
+        scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString();
+        Time.timeScale = 0f;
 
         if (unlockLevel <= selectLevel)
         {
             PlayerPrefs.SetInt("stageLevel", selectLevel + 1);
         }
 
-        yield return new WaitForSecondsRealtime(1f);
-        endText.gameObject.SetActive(true);
-        scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString();
-        Time.timeScale = 0f;
+        score = (int)(time * 100f) - 10 * tryNum;
+
+        if (score > bestScore)
+        {
+            PlayerPrefs.SetInt("Stage" + selectLevel + "_Score", score);
+        }
+
+        if (time > bestTime)
+        {
+            PlayerPrefs.SetFloat("Stage" + selectLevel + "_Time", time);
+        }
     }
 
     void TextColorUpdate()
