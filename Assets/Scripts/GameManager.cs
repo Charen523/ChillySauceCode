@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(startClip);
         anim.SetBool("IsOver", false);
         isMatching = false;
-        time = startTime;
+        time = startTime - 5 * (LevelManager.Instance.selectLevel - 1);
 
         Invoke("MatchInvoke", 0f); //Match사인 초기화.
     }
