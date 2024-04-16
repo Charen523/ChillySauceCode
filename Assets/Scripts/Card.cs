@@ -62,38 +62,23 @@ public class Card : MonoBehaviour
         {
             return;
         }
-            anim.SetBool("isOpen", true);
-            front.SetActive(true);
-            back.SetActive(false);
-            isCardOpened = true;
-
-            if (GameManager.Instance.firstCard == null)
-            {
-                onClick = true;
-                GameManager.Instance.firstCard = this;
-            }
-            else
-            {
-                GameManager.Instance.secondCard = this;
-                GameManager.Instance.Matched();
-                GameManager.Instance.isMatching = true;
-            }
-
-        audioSource.PlayOneShot(clip);
-
         anim.SetBool("isOpen", true);
         front.SetActive(true);
         back.SetActive(false);
         isCardOpened = true;
-
-        if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
+    
+        if (GameManager.Instance.firstCard == null)
+        {
+            onClick = true;
+            GameManager.Instance.firstCard = this;
+        }
         else
         {
             GameManager.Instance.secondCard = this;
             GameManager.Instance.Matched();
             GameManager.Instance.isMatching = true;
-
         }
+        audioSource.PlayOneShot(clip);
     }
 
     public void DestroyCard()
