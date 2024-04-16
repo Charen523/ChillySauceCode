@@ -50,16 +50,32 @@ public class Board : MonoBehaviour
     // 카드 리스트를 섞는 메서드
     private int[] ShuffleArray(int[] array)
     {
-        int random1, random2, temp;
+        int random1, random2, random3, temp;
+        int direction = 0;
         for(int i = 0; i < array.Length; i++)
         {
             random1 = Random.Range(0, array.Length);
             random2 = Random.Range(0, array.Length);
+            random3 = Random.Range(0, array.Length);
 
-            temp = array[random1];
-            array[random1] = array[random2];
-            array[random2] = temp;
+            if(direction == 0)
+            { 
+                temp = array[random1];
+                array[random1] = array[random2];
+                array[random2] = array[random3];
+                array[random3] = temp;
+                direction = 1;
+            }
+            else if(direction == 1)
+            {
+                temp = array[random3];
+                array[random3] = array[random2];
+                array[random2] = array[random1];
+                array[random1] = temp;
+                direction = 1;
+            }
         }
+        Debug.Log($"{string.Join(", ", array)}");
         return array;
     }
 }
