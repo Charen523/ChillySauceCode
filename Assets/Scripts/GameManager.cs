@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Text tryTxt; //뒤집기 시도한 횟수를 보여줄 text
     public Text timetext;
     public Text endText;
+    public Text scoreText;  // 점수를 표시할 text
 
     AudioSource audioSource;
 
@@ -176,6 +179,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1f);
         endText.gameObject.SetActive(true);
+        scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString();
         Time.timeScale = 0f;
     }
 

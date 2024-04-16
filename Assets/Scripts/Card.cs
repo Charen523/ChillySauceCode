@@ -46,7 +46,7 @@ public class Card : MonoBehaviour
             if (time > 4f)
             {
                 GameManager.Instance.firstCard.CloseCard();
-                GameManager.Instance.firstCard = null;           
+                GameManager.Instance.firstCard = null;
             }
         }
     }
@@ -62,28 +62,24 @@ public class Card : MonoBehaviour
         {
             return;
         }
-
-        if (!GameManager.Instance.isMatching)
+        anim.SetBool("isOpen", true);
+        front.SetActive(true);
+        back.SetActive(false);
+        isCardOpened = true;
+    
+        if (GameManager.Instance.firstCard == null)
         {
-            audioSource.PlayOneShot(clip);
-
-            anim.SetBool("isOpen", true);
-            front.SetActive(true);
-            back.SetActive(false);
-            isCardOpened = true;
-
-            if (GameManager.Instance.firstCard == null)
-            {
-                onClick = true;
-                GameManager.Instance.firstCard = this;
-            }
-            else
-            {
-                GameManager.Instance.secondCard = this;
-                GameManager.Instance.Matched();
-                GameManager.Instance.isMatching = true;
-            }
+            onClick = true;
+            GameManager.Instance.firstCard = this;
         }
+        else
+        {
+            GameManager.Instance.secondCard = this;
+            GameManager.Instance.Matched();
+            GameManager.Instance.isMatching = true;
+
+        }
+        audioSource.PlayOneShot(clip);
     }
 
     public void DestroyCard()
