@@ -81,7 +81,8 @@ public class GameManager : MonoBehaviour
 
         if (cardCount > 0)
         {
-            time -= Time.deltaTime;
+            if (time <= 0) time = 0f;
+            else time -= Time.deltaTime;
 
             timetext.text = time.ToString("N2");
         }
