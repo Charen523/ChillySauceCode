@@ -43,11 +43,11 @@ public class Card : MonoBehaviour
             {
                 time += Time.deltaTime;
             }
-            //if (time > 4f)
-            //{
-            //    GameManager.Instance.firstCard.CloseCard();
-            //    GameManager.Instance.firstCard = null;           
-            //}
+            if (time > 4f)
+            {
+                GameManager.Instance.firstCard.CloseCard();
+                GameManager.Instance.firstCard = null;
+            }
         }
     }
     public void CardSpriteSetting(int number)
