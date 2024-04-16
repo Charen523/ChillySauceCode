@@ -132,7 +132,6 @@ public class GameManager : MonoBehaviour
         {
             matchPanel.color = FailColor;
             matchTxt.text = "실패...";
-            Debug.Log("실패");
             matchPanel.enabled = true;
             matchTxt.enabled = true;
 
