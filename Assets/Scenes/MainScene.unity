@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: b802faa08d3dad146b34432ded264e4b, type: 3}
+  audioSource: {fileID: 0}
 --- !u!4 &114520629
 Transform:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &139395159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -600,8 +601,8 @@ GameObject:
   m_Component:
   - component: {fileID: 408076502}
   - component: {fileID: 408076501}
-  - component: {fileID: 408076503}
   - component: {fileID: 408076504}
+  - component: {fileID: 408076503}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -751,7 +752,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2a3b7194e708940852dda1d93f374b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 139395160}
+  manager: {fileID: 408076501}
+  matchBackground: {fileID: 139395160}
+  ResultTxt: {fileID: 1612641567}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
