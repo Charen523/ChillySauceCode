@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,34 +15,25 @@ public class Card : MonoBehaviour
     public Image backImg;
 
     public int idx;
-    bool isCardDark;
 
-    float waitTime;
+
+
+    public bool isCardOpened;
+
 
     AudioSource audioSource;
     // Start is called before the first frame update
 
-    private void Awake()
-    {
-        isCardDark = false;
-    }
-
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isCardDark) backImg.color = new Color(0.8f, 0.8f, 0.8f);
-        if (GameManager.Instance.firstCard != null && GameManager.Instance.secondCard == null) waitTime += Time.deltaTime;
-        if (waitTime > 5f)
-        {
-            GameManager.Instance.firstCard.CloseCard();
-            GameManager.Instance.firstCard = null;
-            waitTime = 0f;
-        }
+
     }
     public void CardSpriteSetting(int number)
     {
@@ -57,6 +49,7 @@ public class Card : MonoBehaviour
             anim.SetBool("isOpen", true);
             front.SetActive(true);
             back.SetActive(false);
+            isCardOpened = true;
             if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
             else
             {
@@ -69,14 +62,17 @@ public class Card : MonoBehaviour
 
     public void DestroyCard()
     {
-        waitTime = 0f;
         StartCoroutine("DestroyCardCoroutine");
     }
 
     public void CloseCard()
     {
-        waitTime = 0f;
         StartCoroutine("CloseCardCoroutine");
+        
+        if (isCardOpened)
+        {
+            changeColor();
+        }
     }
 
     public IEnumerator DestroyCardCoroutine()
@@ -92,8 +88,14 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
+        
         GameManager.Instance.isMatching = false;
-        isCardDark = true;
+    }
+
+
+    void changeColor()
+    {
+        backBtn.GetComponentInChildren<Image>().color = Color.gray;
     }
 
 }
