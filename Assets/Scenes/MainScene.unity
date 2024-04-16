@@ -249,7 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e67ce6254df3847840c43d0642c260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: b802faa08d3dad146b34432ded264e4b, type: 3}
+  clips:
+  - {fileID: 8300000, guid: b802faa08d3dad146b34432ded264e4b, type: 3}
+  - {fileID: 8300000, guid: 1c64bd3a6ecc5c4409e8aa874c7315bf, type: 3}
   audioSource: {fileID: 0}
 --- !u!4 &114520629
 Transform:
@@ -278,12 +280,12 @@ GameObject:
   - component: {fileID: 139395161}
   - component: {fileID: 139395160}
   m_Layer: 5
-  m_Name: Match_Img
+  m_Name: MatchPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &139395159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -294,7 +296,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1612641566}
   m_Father: {fileID: 815739903}
@@ -601,8 +603,8 @@ GameObject:
   m_Component:
   - component: {fileID: 408076502}
   - component: {fileID: 408076501}
-  - component: {fileID: 408076504}
   - component: {fileID: 408076503}
+  - component: {fileID: 408076504}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -623,20 +625,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: aea59d712b62ad44aa4018847ca57964, type: 3}
+  matchPanel: {fileID: 139395160}
+  matchTxt: {fileID: 1612641567}
   timetext: {fileID: 1634938917}
   endText: {fileID: 1544474543}
+  startTime: 60
+  bgmChangeTime: 10
   cardCount: 0
   isMatching: 0
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
---- !u!4 &408076502
-Transform:
+--- !u!224 &408076502
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408076500}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -644,6 +649,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &408076503
 AudioSource:
   m_ObjectHideFlags: 0
@@ -740,21 +750,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &408076504
-MonoBehaviour:
+--- !u!222 &408076504
+CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408076500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c2a3b7194e708940852dda1d93f374b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 408076501}
-  matchBackground: {fileID: 139395160}
-  ResultTxt: {fileID: 1612641567}
+  m_CullTransparentMesh: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,7 +1653,7 @@ GameObject:
   - component: {fileID: 1612641568}
   - component: {fileID: 1612641567}
   m_Layer: 5
-  m_Name: ResultTxt
+  m_Name: MatchTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1834,9 +1837,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 604561275}
-  - {fileID: 408076502}
   - {fileID: 815739903}
   - {fileID: 295925087}
   - {fileID: 114520629}
   - {fileID: 1168363647}
   - {fileID: 1975983965}
+  - {fileID: 408076502}
