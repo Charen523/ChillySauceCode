@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public Text timetext;
     public Text endText;
 
-    float time = 60.0f;
+    float time;
+    float startTime = 60f;
+
 
     public int cardCount;
 
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
-    
+    bool changeMusic = false;
 
     public void Awake()
     {
@@ -37,11 +39,23 @@ public class GameManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         isMatching = false;
+
+        time = startTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (time > 0)
+        {
+            TextColorUpdate();            
+        }               
+
+        if ( time < 10)
+        {
+            BGMChange();
+        }
+
         if (cardCount > 0)
         {
             time -= Time.deltaTime;
@@ -103,5 +117,25 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         endText.gameObject.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    void TextColorUpdate()
+    {        
+        float textColor = time / startTime;
+
+        timetext.color = new Color(1f, textColor, textColor);
+    }
+
+
+    void BGMChange()
+    {
+       /* if (changeMusic == false)
+        {
+            changeMusic = true;
+
+            AudioManager.Instance.audioSource.clip = this.clip;
+        }*/
+
+        
     }
 }
