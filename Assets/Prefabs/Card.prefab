@@ -271,6 +271,7 @@ MonoBehaviour:
   front: {fileID: 2728302869046002774}
   back: {fileID: 1487333957688526157}
   anim: {fileID: 2761602491930553454}
+  backImg: {fileID: 1131240935171935859}
   idx: 0
 --- !u!95 &2761602491930553454
 Animator:
