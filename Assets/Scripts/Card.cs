@@ -15,7 +15,10 @@ public class Card : MonoBehaviour
     public Image backImg;
 
     public int idx;
-<<<<<<< HEAD
+
+    public bool isCardOpened;
+    public GameObject backBtn;
+
     bool isCardDark;
     AudioSource audioSource;
     // Start is called before the first frame update
@@ -25,13 +28,6 @@ public class Card : MonoBehaviour
         isCardDark = false;
     }
 
-=======
-    public bool isCardOpened;
-    public GameObject backBtn;
-    
-
-    AudioSource audioSource;
->>>>>>> 0416김영선
     void Start()
     {
         
@@ -43,12 +39,12 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
+
         if (isCardDark) backImg.color = new Color(0.8f, 0.8f, 0.8f);
-=======
+
         
         
->>>>>>> 0416김영선
+
     }
     public void CardSpriteSetting(int number)
     {
@@ -108,11 +104,10 @@ public class Card : MonoBehaviour
         isCardDark = true;
     }
 
-<<<<<<< HEAD
-=======
+
     void changeColor()
     {
         backBtn.GetComponentInChildren<Image>().color = Color.gray;
     }
->>>>>>> 0416김영선
+
 }
