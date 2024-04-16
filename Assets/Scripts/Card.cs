@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
     public GameObject front;
     public GameObject back;
     public Animator anim;
-    
+
 
     public int idx;
 
@@ -37,9 +37,9 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.firstCard != null)
+        if (GameManager.Instance.firstCard != null)
         {
-            if(onClick)
+            if (onClick)
             {
                 time += Time.deltaTime;
             }
@@ -67,7 +67,7 @@ public class Card : MonoBehaviour
         front.SetActive(true);
         back.SetActive(false);
         isCardOpened = true;
-    
+
         if (GameManager.Instance.firstCard == null)
         {
             onClick = true;
