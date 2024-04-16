@@ -47,6 +47,7 @@ public class Card : MonoBehaviour
             {
                 GameManager.Instance.firstCard.CloseCard();
                 GameManager.Instance.firstCard = null;
+                Invoke("TimePenalty", 1f);
             }
         }
     }
@@ -124,4 +125,8 @@ public class Card : MonoBehaviour
         backBtn.GetComponentInChildren<Image>().color = Color.gray;
     }
 
+    void TimePenalty()
+    {
+        GameManager.Instance.TimePenalty();
+    }
 }

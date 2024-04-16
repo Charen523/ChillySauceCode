@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
 
             firstCard.DestroyCard();
             secondCard.DestroyCard();
+            BonusTime();
             Invoke("matchSoundInvoke", 1f); //성공시 효과음 재생.
 
             cardCount -= 2;
@@ -152,6 +153,7 @@ public class GameManager : MonoBehaviour
             /*실패시 카드 원래대로 뒤집기*/
             firstCard.CloseCard();
             secondCard.CloseCard();
+            TimePenalty();
         }
 
         Invoke("MatchInvoke", 1f); //1초 후 대기 상태로 복귀.
@@ -225,5 +227,15 @@ public class GameManager : MonoBehaviour
     void EndTimeInoke()
     {
         Time.timeScale = 0;
+    }
+
+    void BonusTime()
+    {
+        time += 1.5f;
+    }
+
+    public void TimePenalty()
+    {
+        time -= 1f;
     }
 }
