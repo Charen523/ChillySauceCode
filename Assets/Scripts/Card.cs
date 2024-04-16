@@ -26,6 +26,11 @@ public class Card : MonoBehaviour
     AudioSource audioSource;
     // Start is called before the first frame update
 
+    //카드 넘어가는 속도와 leanTween ease 타입변수입니다.
+    public float m_Speed = 0.2f;
+    public LeanTweenType leanTweenType;
+
+
     void Start()
     {
 
@@ -63,9 +68,7 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        anim.SetBool("isOpen", true);
-        front.SetActive(true);
-        back.SetActive(false);
+        RotateCard();
         isCardOpened = true;
     
         if (GameManager.Instance.firstCard == null)
@@ -112,9 +115,7 @@ public class Card : MonoBehaviour
     public IEnumerator CloseCardCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        anim.SetBool("isOpen", false);
-        front.SetActive(false);
-        back.SetActive(true);
+        ReverseCard();
 
         GameManager.Instance.isMatching = false;
     }
@@ -129,4 +130,50 @@ public class Card : MonoBehaviour
     {
         GameManager.Instance.TimePenalty();
     }
+
+
+    public void RotateCard()
+    {
+        if (LeanTween.isTweening(gameObject))
+            return;
+
+        var rot = Mathf.Round(transform.localRotation.y) == 0f ? 180f : 0f;
+        LeanTween.rotateY(gameObject, rot, m_Speed)
+            .setOnStart(() => ScaleCard(gameObject, Vector3.one * 1.1f))
+            .setOnComplete(() => ScaleCard(gameObject, Vector3.one))
+            .setEase(leanTweenType);
+        LeanTween.delayedCall(m_Speed / 2, () => ShowFront())
+            .setEase(leanTweenType);
+    }
+    public void ReverseCard()
+    {
+        if (LeanTween.isTweening(gameObject))
+            return;
+
+        var rot = Mathf.Round(transform.localRotation.y) == 0f ? 180f : 0f;
+        LeanTween.rotateY(gameObject, rot, m_Speed)
+            .setOnStart(() => ScaleCard(gameObject, Vector3.one * 1.1f))
+            .setOnComplete(() => ScaleCard(gameObject, Vector3.one))
+            .setEase(leanTweenType);
+        LeanTween.delayedCall(m_Speed / 2, () => ShowBack())
+            .setEase(leanTweenType);
+    }
+
+    protected void ShowFront()
+    {
+        transform.Find("Back")?.gameObject.SetActive(false);
+        transform.Find("Front")?.gameObject.SetActive(true);
+        Debug.Log("사진");
+    }
+
+    protected void ShowBack()
+    {
+        transform.Find("Front")?.gameObject.SetActive(false);
+        transform.Find("Back")?.gameObject.SetActive(true);
+        Debug.Log("스파르타");
+    }
+
+    protected void ScaleCard(GameObject go, Vector3 scale) => LeanTween.scale(go, scale, m_Speed);
+
+
 }
