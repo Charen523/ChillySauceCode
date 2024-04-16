@@ -21,7 +21,6 @@ public class Card : MonoBehaviour
     private void Awake()
     {
         isCardDark = false;
-        Debug.Log(backImg.sprite.name);
     }
 
     void Start()
