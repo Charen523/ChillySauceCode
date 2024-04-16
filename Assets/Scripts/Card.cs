@@ -43,11 +43,11 @@ public class Card : MonoBehaviour
             {
                 time += Time.deltaTime;
             }
-            if (time > 4f)
-            {
-                GameManager.Instance.firstCard.CloseCard();
-                GameManager.Instance.firstCard = null;           
-            }
+            //if (time > 4f)
+            //{
+            //    GameManager.Instance.firstCard.CloseCard();
+            //    GameManager.Instance.firstCard = null;           
+            //}
         }
     }
     public void CardSpriteSetting(int number)
@@ -62,8 +62,6 @@ public class Card : MonoBehaviour
         {
             return;
         }
-
-<<<<<<< HEAD
             anim.SetBool("isOpen", true);
             front.SetActive(true);
             back.SetActive(false);
@@ -80,7 +78,7 @@ public class Card : MonoBehaviour
                 GameManager.Instance.Matched();
                 GameManager.Instance.isMatching = true;
             }
-=======
+
         audioSource.PlayOneShot(clip);
 
         anim.SetBool("isOpen", true);
@@ -94,7 +92,7 @@ public class Card : MonoBehaviour
             GameManager.Instance.secondCard = this;
             GameManager.Instance.Matched();
             GameManager.Instance.isMatching = true;
->>>>>>> 0416김영선
+
         }
     }
 
