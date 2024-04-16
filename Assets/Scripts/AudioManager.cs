@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioClip clip;
+    public AudioClip[] clips;
 
     public AudioSource audioSource;
 
@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
     {
       audioSource = GetComponent<AudioSource>();
 
-        audioSource.clip = this.clip;
+        audioSource.clip = clips[0];
         audioSource.Play();
     }
 

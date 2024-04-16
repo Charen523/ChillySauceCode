@@ -15,8 +15,9 @@ public class GameManager : MonoBehaviour
     public Text endText;
 
     float time;
-    float startTime = 60f;
+    public float startTime = 60f;
 
+    public float bgmChangeTime = 10f;
 
     public int cardCount;
 
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
             TextColorUpdate();            
         }               
 
-        if ( time < 10)
+        if ( time < bgmChangeTime)
         {
             BGMChange();
         }
@@ -103,6 +104,9 @@ public class GameManager : MonoBehaviour
 
     public void ReTry()
     {
+        AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
+        AudioManager.Instance.audioSource.Play();
+
         SceneManager.LoadScene("MainScene");
     }
 
@@ -129,12 +133,13 @@ public class GameManager : MonoBehaviour
 
     void BGMChange()
     {
-       /* if (changeMusic == false)
+        if (changeMusic == false)
         {
             changeMusic = true;
 
-            AudioManager.Instance.audioSource.clip = this.clip;
-        }*/
+            AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[1];
+            AudioManager.Instance.audioSource.Play();
+        }
 
         
     }
