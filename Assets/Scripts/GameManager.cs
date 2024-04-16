@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public AudioClip clip;
+    public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
     /*UI 선언*/
     public Image matchPanel; //짝을 맞췄을 때 나올 배경
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
+        anim.SetBool("IsOver", false);
         isMatching = false;
         time = startTime;
 
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
             endText.gameObject.SetActive(true);
+            anim.SetBool("IsOver", false);
         }
     }
 
