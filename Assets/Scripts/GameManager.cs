@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
         AudioManager.Instance.audioSource.Play();
-
+        Board.isCardGenerated = false;
         SceneManager.LoadScene("StartScene");
     }
 

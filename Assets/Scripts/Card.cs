@@ -63,27 +63,32 @@ public class Card : MonoBehaviour
     }
     public void CardClick()
     {
-        // 카드 배분이 완료되지 않았거나 일시정지 상태이거나 이미 열려있는 카드인 경우 클릭을 무시
-        if (!Board.isCardGenerated || PauseBtn.isPaused || GameManager.Instance.isMatching)
-        {
-            return;
-        }
-        RotateCard();
-        isCardOpened = true;
-    
-        if (GameManager.Instance.firstCard == null)
-        {
-            onClick = true;
-            GameManager.Instance.firstCard = this;
-        }
-        else
-        {
-            GameManager.Instance.secondCard = this;
-            GameManager.Instance.Matched();
-            GameManager.Instance.isMatching = true;
+        
+       if(Board.isCardGenerated)
+        { 
+            if (!GameManager.Instance.isMatching)
+            {
+                if (!PauseBtn.isPaused)
+                {
+                    RotateCard();
+                    isCardOpened = true;
 
-        }
-        audioSource.PlayOneShot(clip);
+                    if (GameManager.Instance.firstCard == null)
+                    {
+                        onClick = true;
+                        GameManager.Instance.firstCard = this;
+                    }
+                    else
+                    {
+                        GameManager.Instance.secondCard = this;
+                        GameManager.Instance.Matched();
+                        GameManager.Instance.isMatching = true;
+
+                    }
+                    audioSource.PlayOneShot(clip);
+                }
+            }   
+    }
     }
 
     public void DestroyCard()
