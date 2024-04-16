@@ -42,21 +42,25 @@ public class Card : MonoBehaviour
     }
     public void CardClick()
     {
-        if (!GameManager.Instance.isMatching)
+        // 카드 배분이 완료되지 않았거나 일시정지 상태이거나 이미 열려있는 카드인 경우 클릭을 무시
+        if (!Board.isCardGenerated || PauseBtn.isPaused || GameManager.Instance.isMatching)
         {
-            audioSource.PlayOneShot(clip);
+            return;
+        }
 
-            anim.SetBool("isOpen", true);
-            front.SetActive(true);
-            back.SetActive(false);
-            isCardOpened = true;
-            if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
-            else
-            {
-                GameManager.Instance.secondCard = this;
-                GameManager.Instance.Matched();
-                GameManager.Instance.isMatching = true;
-            }
+        audioSource.PlayOneShot(clip);
+
+        anim.SetBool("isOpen", true);
+        front.SetActive(true);
+        back.SetActive(false);
+        isCardOpened = true;
+
+        if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
+        else
+        {
+            GameManager.Instance.secondCard = this;
+            GameManager.Instance.Matched();
+            GameManager.Instance.isMatching = true;
         }
     }
 
