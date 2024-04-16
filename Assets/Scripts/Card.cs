@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -10,20 +11,30 @@ public class Card : MonoBehaviour
     public GameObject front;
     public GameObject back;
     public Animator anim;
+    public Image backImg;
 
     public int idx;
-
+    bool isCardDark;
     AudioSource audioSource;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        isCardDark = false;
+        Debug.Log(backImg.sprite.name);
+    }
+
     void Start()
     {
+        
+        
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isCardDark) backImg.color = new Color(0.8f, 0.8f, 0.8f);
     }
     public void CardSpriteSetting(int number)
     {
@@ -73,7 +84,7 @@ public class Card : MonoBehaviour
         front.SetActive(false);
         back.SetActive(true);
         GameManager.Instance.isMatching = false;
+        isCardDark = true;
     }
-
 
 }
