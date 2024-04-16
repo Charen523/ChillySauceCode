@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
             BonusTime();
             Invoke("matchSoundInvoke", 1f); //성공시 효과음 재생.
 
+
             cardCount -= 2;
         }
         else
