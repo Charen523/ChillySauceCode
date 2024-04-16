@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public AudioClip matchClip; //카드 맞추기 성공했을 때 쓰이는 효과음.
     public AudioClip failClip; //카드 맞추기 실패했을 때 쓰이는 효과음.
     public AudioClip startClip; //게임을 시작할 때 나타날 효과음(끝 글씨 클릭시, 스테이지 진입시 들리는 것처럼 연출)
-    
+    public AudioClip buttonClip; //끝 버튼에 효과음 구현.
+
     public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
     /*UI 선언*/
@@ -163,6 +164,8 @@ public class GameManager : MonoBehaviour
 
     public void ReTry()
     {
+        audioSource.PlayOneShot(buttonClip);
+
         AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
         AudioManager.Instance.audioSource.Play();
         Board.isCardGenerated = false;
