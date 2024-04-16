@@ -62,8 +62,6 @@ public class GameManager : MonoBehaviour
         isMatching = false;
         time = startTime;
 
-        time = 3;
-
         Invoke("MatchInvoke", 0f); //Match사인 초기화.
     }
 
