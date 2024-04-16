@@ -57,10 +57,13 @@ public class Card : MonoBehaviour
     }
     public void CardClick()
     {
-        if (!GameManager.Instance.isMatching)
+        // Ä«µå ¹èºĞÀÌ ¿Ï·áµÇÁö ¾Ê¾Ò°Å³ª ÀÏ½ÃÁ¤Áö »óÅÂÀÌ°Å³ª ÀÌ¹Ì ¿­·ÁÀÖ´Â Ä«µåÀÎ °æ¿ì Å¬¸¯À» ¹«½Ã
+        if (!Board.isCardGenerated || PauseBtn.isPaused || GameManager.Instance.isMatching)
         {
-            audioSource.PlayOneShot(clip);
+            return;
+        }
 
+<<<<<<< HEAD
             anim.SetBool("isOpen", true);
             front.SetActive(true);
             back.SetActive(false);
@@ -77,6 +80,21 @@ public class Card : MonoBehaviour
                 GameManager.Instance.Matched();
                 GameManager.Instance.isMatching = true;
             }
+=======
+        audioSource.PlayOneShot(clip);
+
+        anim.SetBool("isOpen", true);
+        front.SetActive(true);
+        back.SetActive(false);
+        isCardOpened = true;
+
+        if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
+        else
+        {
+            GameManager.Instance.secondCard = this;
+            GameManager.Instance.Matched();
+            GameManager.Instance.isMatching = true;
+>>>>>>> 0416ê¹€ì˜ì„ 
         }
     }
 
