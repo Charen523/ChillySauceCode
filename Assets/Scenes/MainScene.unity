@@ -627,6 +627,7 @@ MonoBehaviour:
   matchClip: {fileID: 8300000, guid: aea59d712b62ad44aa4018847ca57964, type: 3}
   failClip: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
   startClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  buttonClip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   anim: {fileID: 1101368640}
   matchPanel: {fileID: 139395160}
   matchTxt: {fileID: 1612641567}
@@ -1619,6 +1620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 1168363646}
+  buttonClip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
 --- !u!114 &1480969743
 MonoBehaviour:
   m_ObjectHideFlags: 0
