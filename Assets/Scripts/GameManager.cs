@@ -80,13 +80,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            anim.SetBool("IsOver", true);
             StartCoroutine("EndGame");
         }
         if (time <= 0)
         {
-            Time.timeScale = 0;
             endText.gameObject.SetActive(true);
-            anim.SetBool("IsOver", false);
+            anim.SetBool("IsOver", true);
+            Debug.Log("지연중");
+            Invoke("EndTimeInoke", 2f);
+            
         }
     }
 
@@ -192,5 +195,11 @@ public class GameManager : MonoBehaviour
     {
         matchPanel.color = WaitingColor; //배경색을 회식으로 변경.
         matchTxt.text = "화이팅!"; //문구를 화이팅으로 변경.
+    }
+
+    //게임종료 시 TimeScale 지연시키는 함수.
+    void EndTimeInoke()
+    {
+        Time.timeScale = 0;
     }
 }
