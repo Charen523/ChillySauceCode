@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public AudioClip matchClip; //카드 맞추기 성공했을 때 쓰이는 효과음.
     public AudioClip failClip; //카드 맞추기 실패했을 때 쓰이는 효과음.
     public AudioClip startClip; //게임을 시작할 때 나타날 효과음(끝 글씨 클릭시, 스테이지 진입시 들리는 것처럼 연출)
-    
+
     public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
     /*UI 선언*/
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        audioSource.PlayOneShot(startClip); 
+        audioSource.PlayOneShot(startClip);
         anim.SetBool("IsOver", false);
         isMatching = false;
         time = startTime;
@@ -92,11 +92,11 @@ public class GameManager : MonoBehaviour
         }
         if (time <= 0)
         {
-            endText.gameObject.SetActive(true);   
+            endText.gameObject.SetActive(true);
             anim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
             Debug.Log("지연중");
             Invoke("EndTimeInoke", 2.5f);
-            
+
         }
     }
 
@@ -142,7 +142,6 @@ public class GameManager : MonoBehaviour
             BonusTime();
             Invoke("matchSoundInvoke", 1f); //성공시 효과음 재생.
 
-
             cardCount -= 2;
         }
         else
@@ -187,7 +186,7 @@ public class GameManager : MonoBehaviour
         int unlockLevel = LevelManager.Instance.unlockLevel;
         int selectLevel = LevelManager.Instance.selectLevel;
 
-        if ( unlockLevel <= selectLevel)
+        if (unlockLevel <= selectLevel)
         {
             PlayerPrefs.SetInt("stageLevel", selectLevel + 1);
         }
