@@ -273,7 +273,7 @@ MonoBehaviour:
   anim: {fileID: 2761602491930553454}
   idx: 0
   isCardOpened: 0
-  backButton: {fileID: 8383224531929270009}
+  backBtn: {fileID: 5489535982224710481}
 --- !u!95 &2761602491930553454
 Animator:
   serializedVersion: 5

@@ -15,15 +15,14 @@ public class Card : MonoBehaviour
 
     public int idx;
     public bool isCardOpened;
-    public Button backButton;
-
+    public GameObject backBtn;
     
 
     AudioSource audioSource;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        backButton = GetComponent<Button>(); // backButton 초기화
+        
     }
 
     // Update is called once per frame
@@ -47,7 +46,6 @@ public class Card : MonoBehaviour
             front.SetActive(true);
             back.SetActive(false);
             isCardOpened = true;
-            Debug.Log("카드 뒤집음");
             if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
             else
             {
@@ -66,6 +64,7 @@ public class Card : MonoBehaviour
     public void CloseCard()
     {
         StartCoroutine("CloseCardCoroutine");
+        
         if (isCardOpened)
         {
             changeColor();
@@ -91,10 +90,6 @@ public class Card : MonoBehaviour
 
     void changeColor()
     {
-        ColorBlock colorBlock = new ColorBlock();
-
-        colorBlock.normalColor = Color.red;
-
-        backButton.colors = colorBlock;
+        backBtn.GetComponentInChildren<Image>().color = Color.gray;
     }
 }
