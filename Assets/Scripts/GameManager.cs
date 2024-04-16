@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
     public Text timetext;
     public Text endText;
 
-    float time = 0;
-    float endTime = 10f;
+    float time;
+    float startTime = 60f;
+
 
     public int cardCount;
 
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     // 추후 카드 오브젝트가 완성되면 넣어준다.
     public Card firstCard;
     public Card secondCard;
+
+    bool changeMusic = false;
 
     public void Awake()
     {
@@ -36,14 +39,26 @@ public class GameManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         isMatching = false;
+
+        time = startTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (time > 0)
+        {
+            TextColorUpdate();            
+        }               
+
+        if ( time < 10)
+        {
+            BGMChange();
+        }
+
         if (cardCount > 0)
         {
-            time += Time.deltaTime;
+            time -= Time.deltaTime;
 
             timetext.text = time.ToString("N2");
         }
@@ -51,11 +66,11 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine("EndGame");
         }
-        /*if ( time > endTime)
+        if (time <= 0)
         {
             Time.timeScale = 0;
             endText.gameObject.SetActive(true);
-        }*/
+        }
     }
 
     void Singleton()
@@ -102,5 +117,25 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         endText.gameObject.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    void TextColorUpdate()
+    {        
+        float textColor = time / startTime;
+
+        timetext.color = new Color(1f, textColor, textColor);
+    }
+
+
+    void BGMChange()
+    {
+       /* if (changeMusic == false)
+        {
+            changeMusic = true;
+
+            AudioManager.Instance.audioSource.clip = this.clip;
+        }*/
+
+        
     }
 }

@@ -32,20 +32,19 @@ public class Card : MonoBehaviour
     }
     public void CardClick()
     {
-        if (PauseBtn.isPaused == false)
-        { 
-            if (!GameManager.Instance.isMatching)
+        if (!GameManager.Instance.isMatching)
+        {
+            audioSource.PlayOneShot(clip);
+
+            anim.SetBool("isOpen", true);
+            front.SetActive(true);
+            back.SetActive(false);
+            if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
+            else
             {
-                anim.SetBool("isOpen", true);
-                front.SetActive(true);
-                back.SetActive(false);
-                if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
-                else
-                {
-                    GameManager.Instance.secondCard = this;
-                    GameManager.Instance.Matched();
-                    GameManager.Instance.isMatching = true;
-                }
+                GameManager.Instance.secondCard = this;
+                GameManager.Instance.Matched();
+                GameManager.Instance.isMatching = true;
             }
         }
     }
@@ -62,7 +61,6 @@ public class Card : MonoBehaviour
 
     public IEnumerator DestroyCardCoroutine()
     {
-        Debug.Log("CloseCard 호출");
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         GameManager.Instance.isMatching = false;
@@ -70,11 +68,12 @@ public class Card : MonoBehaviour
 
     public IEnumerator CloseCardCoroutine()
     {
-        Debug.Log("DestoryCard 호출");
         yield return new WaitForSeconds(1f);
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
         GameManager.Instance.isMatching = false;
     }
+
+
 }
