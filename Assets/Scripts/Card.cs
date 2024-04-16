@@ -16,18 +16,18 @@ public class Card : MonoBehaviour
 
     public int idx;
 
-
-
     public bool isCardOpened;
-
+    public GameObject backBtn;
 
     AudioSource audioSource;
     // Start is called before the first frame update
 
     void Start()
     {
+
+
         audioSource = GetComponent<AudioSource>();
-        
+
     }
 
     // Update is called once per frame
@@ -68,7 +68,7 @@ public class Card : MonoBehaviour
     public void CloseCard()
     {
         StartCoroutine("CloseCardCoroutine");
-        
+
         if (isCardOpened)
         {
             changeColor();
@@ -88,7 +88,7 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
-        
+
         GameManager.Instance.isMatching = false;
     }
 
