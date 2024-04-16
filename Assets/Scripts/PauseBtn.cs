@@ -5,10 +5,21 @@ using UnityEngine;
 public class PauseBtn : MonoBehaviour
 {
     public GameObject PauseMenu;
+    public AudioClip buttonClip;
 
     public static bool isPaused = false;
+
+    AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();  
+    }
+
     public void PushPauseMenu()
     {
+        audioSource.PlayOneShot(buttonClip);
+
         if (!isPaused)
         {
             // 일시 정지 버튼을 눌러 isPaused = false면 게임을 멈춤
