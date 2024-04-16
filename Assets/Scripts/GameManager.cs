@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
         AudioManager.Instance.audioSource.Play();
 
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("StartScene");
     }
 
     void SoundInvoke()
@@ -169,6 +169,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGame()
     {
+        int unlockLevel = LevelManager.Instance.unlockLevel;
+        int selectLevel = LevelManager.Instance.selectLevel;
+
+        if ( unlockLevel <= selectLevel)
+        {
+            PlayerPrefs.SetInt("stageLevel", selectLevel + 1);
+        }
+
         yield return new WaitForSecondsRealtime(1f);
         endText.gameObject.SetActive(true);
         scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString();

@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
 
     public Button[] stageSelectButton;
 
-    public GameObject levelSelectPanel;
+    public GameObject levelSelectCanvas;
 
     private void Awake()
     {
@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
 
     public void SelectLevel(int sceneIndex)
     {
-        levelSelectPanel.SetActive(false);
+        levelSelectCanvas.SetActive(false);
 
         selectLevel = sceneIndex;
 
@@ -76,19 +76,19 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void OpenPanel()
+    public void OpenCanvas()
     {
         if (PauseBtn.isPaused != true)
         {
-            levelSelectPanel.SetActive(true);
+            levelSelectCanvas.SetActive(true);
         }
     }
 
-    public void ClosePanel()
+    public void CloseCanvas()
     {
         if (PauseBtn.isPaused != true)
         {
-            levelSelectPanel.SetActive(false);
+            levelSelectCanvas.SetActive(false);
         }
     }
 
