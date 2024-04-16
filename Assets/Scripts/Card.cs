@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -12,17 +14,22 @@ public class Card : MonoBehaviour
     public Animator anim;
 
     public int idx;
+    public bool isCardOpened;
+    public Button backButton;
+
+    
 
     AudioSource audioSource;
-    // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        backButton = GetComponent<Button>(); // backButton 초기화
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         
     }
     public void CardSpriteSetting(int number)
@@ -39,6 +46,8 @@ public class Card : MonoBehaviour
             anim.SetBool("isOpen", true);
             front.SetActive(true);
             back.SetActive(false);
+            isCardOpened = true;
+            Debug.Log("카드 뒤집음");
             if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
             else
             {
@@ -57,6 +66,10 @@ public class Card : MonoBehaviour
     public void CloseCard()
     {
         StartCoroutine("CloseCardCoroutine");
+        if (isCardOpened)
+        {
+            changeColor();
+        }
     }
 
     public IEnumerator DestroyCardCoroutine()
@@ -72,8 +85,16 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
+        
         GameManager.Instance.isMatching = false;
     }
 
+    void changeColor()
+    {
+        ColorBlock colorBlock = new ColorBlock();
 
+        colorBlock.normalColor = Color.red;
+
+        backButton.colors = colorBlock;
+    }
 }
