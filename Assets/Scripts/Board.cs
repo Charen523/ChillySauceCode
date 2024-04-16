@@ -75,7 +75,6 @@ public class Board : MonoBehaviour
                 direction = 1;
             }
         }
-        Debug.Log($"{string.Join(", ", array)}");
         return array;
     }
 }
