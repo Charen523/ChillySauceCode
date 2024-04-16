@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
+    public AudioClip buttonClip; //버튼 클릭시 효과음.
 
     public int unlockLevel;
     public int selectLevel;
@@ -15,7 +16,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject levelSelectCanvas;
 
-
+    AudioSource audioSource;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();  
         InitData();
     }
 
@@ -90,6 +92,7 @@ public class LevelManager : MonoBehaviour
     {
         if (PauseBtn.isPaused != true)
         {
+            audioSource.PlayOneShot(buttonClip);
             levelSelectCanvas.SetActive(false);
         }
     }
