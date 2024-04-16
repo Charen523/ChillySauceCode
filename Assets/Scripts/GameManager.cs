@@ -14,8 +14,7 @@ public class GameManager : MonoBehaviour
     public Text timetext;
     public Text endText;
 
-    float time = 0;
-    float endTime = 10f;
+    float time = 60.0f;
 
     public int cardCount;
 
@@ -45,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (cardCount > 0)
         {
-            time += Time.deltaTime;
+            time -= Time.deltaTime;
 
             timetext.text = time.ToString("N2");
         }
@@ -53,11 +52,11 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine("EndGame");
         }
-        /*if ( time > endTime)
+        if (time <= 0)
         {
             Time.timeScale = 0;
             endText.gameObject.SetActive(true);
-        }*/
+        }
     }
 
     void Singleton()
