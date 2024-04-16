@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,13 +20,16 @@ public class Card : MonoBehaviour
     public bool isCardOpened;
     public GameObject backBtn;
 
+    bool onClick; // 첫번째 카드가 눌렸을 때 켜짐.
+    float time; // 카드가 열린 채로 흐른 시간.
+
     AudioSource audioSource;
     // Start is called before the first frame update
 
     void Start()
     {
 
-
+        onClick = false;
         audioSource = GetComponent<AudioSource>();
 
     }
@@ -33,7 +37,18 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(GameManager.Instance.firstCard != null)
+        {
+            if(onClick)
+            {
+                time += Time.deltaTime;
+            }
+            if (time > 4f)
+            {
+                GameManager.Instance.firstCard.CloseCard();
+                GameManager.Instance.firstCard = null;           
+            }
+        }
     }
     public void CardSpriteSetting(int number)
     {
@@ -50,7 +65,12 @@ public class Card : MonoBehaviour
             front.SetActive(true);
             back.SetActive(false);
             isCardOpened = true;
-            if (GameManager.Instance.firstCard == null) GameManager.Instance.firstCard = this;
+
+            if (GameManager.Instance.firstCard == null)
+            {
+                onClick = true;
+                GameManager.Instance.firstCard = this;
+            }
             else
             {
                 GameManager.Instance.secondCard = this;
@@ -62,11 +82,15 @@ public class Card : MonoBehaviour
 
     public void DestroyCard()
     {
+        onClick = false;
+        time = 0f;
         StartCoroutine("DestroyCardCoroutine");
     }
 
     public void CloseCard()
     {
+        onClick = false;
+        time = 0f;
         StartCoroutine("CloseCardCoroutine");
 
         if (isCardOpened)
