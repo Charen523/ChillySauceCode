@@ -46,6 +46,19 @@ public class GameManager : MonoBehaviour
 
     bool changeMusic = false;
 
+    int score;
+
+    public int bestScore;
+
+    public float bestTime;
+
+    int selectLevel;
+    int unlockLevel;
+
+    public Text bestScoreText;
+    public Text bestTimeText;
+
+
     public void Awake()
     {
         Singleton();
@@ -63,6 +76,15 @@ public class GameManager : MonoBehaviour
         time = startTime;
 
         Invoke("MatchInvoke", 0f); //Match사인 초기화.
+
+        unlockLevel = LevelManager.Instance.unlockLevel;
+        selectLevel = LevelManager.Instance.selectLevel;
+
+        bestScore = PlayerPrefs.GetInt("Stage" + selectLevel + "_Score");
+        bestTime = PlayerPrefs.GetFloat("Stage" + selectLevel + "_Time");
+
+        bestScoreText.text = "최고점수: " + bestScore.ToString();
+        bestTimeText.text = "최단기록: " + bestTime.ToString("N2");
     }
 
     // Update is called once per frame
@@ -183,18 +205,28 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGame()
     {
-        int unlockLevel = LevelManager.Instance.unlockLevel;
-        int selectLevel = LevelManager.Instance.selectLevel;
-
-        if ( unlockLevel <= selectLevel)
-        {
-            PlayerPrefs.SetInt("stageLevel", selectLevel + 1);
-        }
-
+        
         yield return new WaitForSecondsRealtime(1f);
         endText.gameObject.SetActive(true);
         scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString();
         Time.timeScale = 0f;
+
+        if (unlockLevel <= selectLevel)
+        {
+            PlayerPrefs.SetInt("stageLevel", selectLevel + 1);
+        }
+
+        score = (int)(time * 100f) - 10 * tryNum;
+
+        if (score > bestScore)
+        {
+            PlayerPrefs.SetInt("Stage" + selectLevel + "_Score", score);
+        }
+
+        if (time > bestTime)
+        {
+            PlayerPrefs.SetFloat("Stage" + selectLevel + "_Time", time);
+        }
     }
 
     void TextColorUpdate()
