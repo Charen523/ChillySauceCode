@@ -15,6 +15,9 @@ public class Card : MonoBehaviour
 
     public int idx;
     bool isCardDark;
+
+    float waitTime;
+
     AudioSource audioSource;
     // Start is called before the first frame update
 
@@ -25,8 +28,6 @@ public class Card : MonoBehaviour
 
     void Start()
     {
-        
-        
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -34,6 +35,13 @@ public class Card : MonoBehaviour
     void Update()
     {
         if (isCardDark) backImg.color = new Color(0.8f, 0.8f, 0.8f);
+        if (GameManager.Instance.firstCard != null && GameManager.Instance.secondCard == null) waitTime += Time.deltaTime;
+        if (waitTime > 5f)
+        {
+            GameManager.Instance.firstCard.CloseCard();
+            GameManager.Instance.firstCard = null;
+            waitTime = 0f;
+        }
     }
     public void CardSpriteSetting(int number)
     {
@@ -61,11 +69,13 @@ public class Card : MonoBehaviour
 
     public void DestroyCard()
     {
+        waitTime = 0f;
         StartCoroutine("DestroyCardCoroutine");
     }
 
     public void CloseCard()
     {
+        waitTime = 0f;
         StartCoroutine("CloseCardCoroutine");
     }
 
