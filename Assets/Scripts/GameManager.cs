@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public AudioClip clip;
+    public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
     /*UI 선언*/
     public Image matchPanel; //짝을 맞췄을 때 나올 배경
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
+        anim.SetBool("IsOver", false);
         isMatching = false;
         time = startTime;
 
@@ -78,12 +80,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            anim.SetBool("IsOver", true);
             StartCoroutine("EndGame");
         }
         if (time <= 0)
         {
-            Time.timeScale = 0;
             endText.gameObject.SetActive(true);
+            anim.SetBool("IsOver", true);
+            Debug.Log("지연중");
+            Invoke("EndTimeInoke", 2f);
+            
         }
     }
 
@@ -189,5 +195,11 @@ public class GameManager : MonoBehaviour
     {
         matchPanel.color = WaitingColor; //배경색을 회식으로 변경.
         matchTxt.text = "화이팅!"; //문구를 화이팅으로 변경.
+    }
+
+    //게임종료 시 TimeScale 지연시키는 함수.
+    void EndTimeInoke()
+    {
+        Time.timeScale = 0;
     }
 }
