@@ -8,13 +8,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public AudioClip clip;
+
+    /*UI 선언*/
     public Image matchPanel; //짝을 맞췄을 때 나올 배경
     public Text matchTxt; //짝을 맞췄을 때 나올 text
-
-    AudioSource audioSource;
-
+    public Text tryTxt; //뒤집기 시도한 횟수를 보여줄 text
     public Text timetext;
     public Text endText;
+
+    AudioSource audioSource;
 
     float time;
     public float startTime = 60f;
@@ -23,15 +25,17 @@ public class GameManager : MonoBehaviour
     public int cardCount;
 
     public bool isMatching;
+    
+    public int tryNum = 0; //카드 뒤집기를 시도한 횟수를 저장하는 변수.
 
-    // 추후 카드 오브젝트가 완성되면 넣어준다.
+    // 게임 진행중 카드 선택 시 카드 오브젝트가 저장될 변수.
     public Card firstCard;
     public Card secondCard;
 
-    //Match 배경색
+    //Match사인 배경색
     Color FailColor = new Color(255 / 255f, 119 / 255f, 119 / 255f); //실패시 이미지 배경색.
     Color SuccessColor = new Color(154 / 255f, 255 / 255f, 154 / 255f);//성공시 이미지 배경색.
-
+    Color WaitingColor = new Color(190 / 255f, 190 / 255f, 190 / 255f); //평상시 이비지 배경색.
 
     bool changeMusic = false;
 
@@ -47,13 +51,9 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         
         isMatching = false;
-
         time = startTime;
 
-        matchPanel.color = FailColor;
-        matchTxt.text = "실패...";
-        matchPanel.enabled = false;
-        matchTxt.enabled = false;
+        Invoke("MatchInvoke", 0f); //Match사인 초기화.
     }
 
     // Update is called once per frame
@@ -97,9 +97,13 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
-        if ( firstCard.idx == secondCard.idx)
+        tryNum++; //시도횟수 카운트.
+        tryTxt.text = tryNum.ToString(); //시도횟수 출력.
+
+        if ( firstCard.idx == secondCard.idx) //카드가 일치하는 경우.
         {
             matchPanel.color = SuccessColor; //초록색으로 변경.
+            
             /*idx에 따라 적절한 사람 이름으로 변경.*/
             switch (firstCard.idx % 4)
             {
@@ -119,8 +123,6 @@ public class GameManager : MonoBehaviour
                     Debug.Log("인덱스 오류.");
                     break;
             }
-            matchPanel.enabled = true; //판넬 보이게 하기.
-            matchTxt.enabled = true;
 
             firstCard.DestroyCard();
             secondCard.DestroyCard();
@@ -130,17 +132,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            matchPanel.color = FailColor;
-            matchTxt.text = "실패...";
-            Debug.Log("실패");
-            matchPanel.enabled = true;
-            matchTxt.enabled = true;
+            matchPanel.color = FailColor; //매치판넬을 붉은색으로 변경.
+            matchTxt.text = "실패..."; //매치텍스트를 실패로 변경.
 
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
 
-        Invoke("MatchInvoke", 1f);
+        Invoke("MatchInvoke", 1f); //1초 후 대기 상태로 복귀.
         firstCard = null;
         secondCard = null;
     }
@@ -185,9 +184,10 @@ public class GameManager : MonoBehaviour
         }   
     }
 
-    void MatchInvoke()
+    //Match 사인을 초기상태로 돌리는 함수.
+    void MatchInvoke() 
     {
-        matchPanel.enabled = false;
-        matchTxt.enabled = false;
+        matchPanel.color = WaitingColor; //배경색을 회식으로 변경.
+        matchTxt.text = "화이팅!"; //문구를 화이팅으로 변경.
     }
 }
