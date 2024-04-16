@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     public AudioClip matchClip; //카드 맞추기 성공했을 때 쓰이는 효과음.
     public AudioClip failClip; //카드 맞추기 실패했을 때 쓰이는 효과음.
     public AudioClip startClip; //게임을 시작할 때 나타날 효과음(끝 글씨 클릭시, 스테이지 진입시 들리는 것처럼 연출)
-    public AudioClip scoreClip; //점수가 나타날 때 나올 효과음.
-
+    
     public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
     /*UI 선언*/
@@ -58,9 +57,12 @@ public class GameManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
+        audioSource.PlayOneShot(startClip); 
         anim.SetBool("IsOver", false);
         isMatching = false;
         time = startTime;
+
+        time = 3;
 
         Invoke("MatchInvoke", 0f); //Match사인 초기화.
     }
@@ -87,15 +89,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            anim.SetBool("IsOver", true);
+            anim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
             StartCoroutine("EndGame");
         }
         if (time <= 0)
         {
-            endText.gameObject.SetActive(true);
-            anim.SetBool("IsOver", true);
+            endText.gameObject.SetActive(true);   
+            anim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
             Debug.Log("지연중");
-            Invoke("EndTimeInoke", 2f);
+            Invoke("EndTimeInoke", 2.5f);
             
         }
     }
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
 
             firstCard.DestroyCard();
             secondCard.DestroyCard();
-            Invoke("SoundInvoke", 1f);
+            Invoke("matchSoundInvoke", 1f); //성공시 효과음 재생.
 
             cardCount -= 2;
         }
@@ -147,7 +149,9 @@ public class GameManager : MonoBehaviour
         {
             matchPanel.color = FailColor; //매치판넬을 붉은색으로 변경.
             matchTxt.text = "실패..."; //매치텍스트를 실패로 변경.
+            Invoke("failSoundInvoke", 1f); //실패시 효과음 재생.
 
+            /*실패시 카드 원래대로 뒤집기*/
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
@@ -165,11 +169,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
-    void SoundInvoke()
+    /*카드를 맞췄을 때 나올 효과음 지연함수.*/
+    void matchSoundInvoke()
     {
         audioSource.PlayOneShot(matchClip);
     }
 
+    /*카드를 틀렸을 때 나올 효과음 지연함수.*/
+    void failSoundInvoke()
+    {
+        audioSource.PlayOneShot(failClip);
+    }
 
     IEnumerator EndGame()
     {

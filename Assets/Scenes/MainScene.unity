@@ -624,7 +624,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bf552b18c65d84b9e6e5291c9fc960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: aea59d712b62ad44aa4018847ca57964, type: 3}
+  matchClip: {fileID: 8300000, guid: aea59d712b62ad44aa4018847ca57964, type: 3}
+  failClip: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
+  startClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  scoreClip: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
   anim: {fileID: 1101368640}
   matchPanel: {fileID: 139395160}
   matchTxt: {fileID: 1612641567}
