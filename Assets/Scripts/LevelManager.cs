@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
 
     public GameObject levelSelectCanvas;
 
+
+
     private void Awake()
     {
         Singleton();
@@ -23,7 +25,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*LevelCheck();*/
+        InitData();
     }
 
 
@@ -97,6 +99,23 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             LevelCheck();
+        }
+    }
+
+    void InitData()
+    {
+        // 처음 게임을 시작했는지 확인하는 UserData 라는 키가 저장 되어있는지 확인합니다.
+        // 해당 키가 없다면 각 스테이지에 최단기록을 저장하는 키에 기본값을 넣어주고 UserData키를 저장합니다.
+        if (PlayerPrefs.HasKey("UserData") == false)
+        {
+            Debug.Log("첫 시작 유저");            
+
+            PlayerPrefs.SetFloat("Stage1", 60f);
+            PlayerPrefs.SetFloat("Stage2", 60f);
+            PlayerPrefs.SetFloat("Stage3", 60f);
+            PlayerPrefs.SetFloat("Stage4", 60f);
+
+            PlayerPrefs.SetString("UserData", "record");
         }
     }
 }
