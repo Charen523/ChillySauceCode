@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public int cardCount;
 
     public bool isMatching;
-    
+
     public int tryNum = 0; //카드 뒤집기를 시도한 횟수를 저장하는 변수.
 
     // 게임 진행중 카드 선택 시 카드 오브젝트가 저장될 변수.
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        
+
         isMatching = false;
         time = startTime;
 
@@ -62,10 +62,10 @@ public class GameManager : MonoBehaviour
 
         if (time > 0)
         {
-            TextColorUpdate();            
-        }               
+            TextColorUpdate();
+        }
 
-        if ( time < bgmChangeTime)
+        if (time < bgmChangeTime)
         {
             BGMChange();
         }
@@ -100,10 +100,10 @@ public class GameManager : MonoBehaviour
         tryNum++; //시도횟수 카운트.
         tryTxt.text = tryNum.ToString(); //시도횟수 출력.
 
-        if ( firstCard.idx == secondCard.idx) //카드가 일치하는 경우.
+        if (firstCard.idx == secondCard.idx) //카드가 일치하는 경우.
         {
             matchPanel.color = SuccessColor; //초록색으로 변경.
-            
+
             /*idx에 따라 적절한 사람 이름으로 변경.*/
             switch (firstCard.idx % 4)
             {
@@ -132,7 +132,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-
+            matchPanel.color = FailColor; //매치판넬을 붉은색으로 변경.
+            matchTxt.text = "실패..."; //매치텍스트를 실패로 변경.
 
             firstCard.CloseCard();
             secondCard.CloseCard();
@@ -156,7 +157,7 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
-    
+
     IEnumerator EndGame()
     {
         yield return new WaitForSecondsRealtime(1f);
@@ -165,7 +166,7 @@ public class GameManager : MonoBehaviour
     }
 
     void TextColorUpdate()
-    {        
+    {
         float textColor = time / startTime;
 
         timetext.color = new Color(1f, textColor, textColor);
@@ -180,11 +181,11 @@ public class GameManager : MonoBehaviour
 
             AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[1];
             AudioManager.Instance.audioSource.Play();
-        }   
+        }
     }
 
     //Match 사인을 초기상태로 돌리는 함수.
-    void MatchInvoke() 
+    void MatchInvoke()
     {
         matchPanel.color = WaitingColor; //배경색을 회식으로 변경.
         matchTxt.text = "화이팅!"; //문구를 화이팅으로 변경.
