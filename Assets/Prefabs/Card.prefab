@@ -271,10 +271,11 @@ MonoBehaviour:
   front: {fileID: 2728302869046002774}
   back: {fileID: 1487333957688526157}
   anim: {fileID: 2761602491930553454}
-  backImg: {fileID: 1131240935171935859}
   idx: 0
   isCardOpened: 0
   backBtn: {fileID: 5489535982224710481}
+  m_Speed: 0.2
+  leanTweenType: 0
 --- !u!95 &2761602491930553454
 Animator:
   serializedVersion: 5
@@ -404,6 +405,7 @@ GameObject:
   - component: {fileID: 4340072224117877876}
   - component: {fileID: 1131240935171935859}
   - component: {fileID: 8383224531929270009}
+  - component: {fileID: 3513246197383420414}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -524,3 +526,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3513246197383420414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489535982224710481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.95709884, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
