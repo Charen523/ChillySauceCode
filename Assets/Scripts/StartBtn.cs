@@ -9,7 +9,7 @@ public class StratBtn : MonoBehaviour
 
     AudioSource audioSource;
 
-    private void Start()
+    void Start()
     {
         LevelManager.Instance.LevelCheck();
         audioSource = GetComponent<AudioSource>();
