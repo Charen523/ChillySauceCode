@@ -194,8 +194,7 @@ public class GameManager : MonoBehaviour
     public void ReTry()
     {
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
-
-
+        
         Time.timeScale = 1f;
 
         AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[0];
