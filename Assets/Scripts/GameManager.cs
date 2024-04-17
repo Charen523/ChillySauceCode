@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     float startTime = 60f; //스테이지 당 총 시간을 저장하는 변수.
     float bgmChangeTime = 10f; //bgm이 변하는 시간을 저장하는 변수.
 
-    public int cardCount; //카드
+    int cardCount; //카드
 
     public bool isMatching;
 
