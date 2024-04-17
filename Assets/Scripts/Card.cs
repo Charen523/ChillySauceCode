@@ -23,7 +23,7 @@ public class Card : MonoBehaviour
     bool onClick; // 첫번째 카드가 눌렸을 때 켜짐.
     float time; // 카드가 열린 채로 흐른 시간.
 
-    AudioSource audioSource;
+    
     // Start is called before the first frame update
 
     //카드 넘어가는 속도와 leanTween ease 타입변수입니다.
@@ -35,7 +35,7 @@ public class Card : MonoBehaviour
     {
 
         onClick = false;
-        audioSource = GetComponent<AudioSource>();
+        
 
     }
 
@@ -86,7 +86,7 @@ public class Card : MonoBehaviour
                         
 
                     }
-                    audioSource.PlayOneShot(clip);
+                    AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[2]);
                 }
             }   
     }
