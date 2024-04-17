@@ -9,13 +9,11 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public AudioClip matchClip; //카드 맞추기 성공했을 때 쓰이는 효과음.
-    public AudioClip failClip; //카드 맞추기 실패했을 때 쓰이는 효과음.
-    public AudioClip startClip; //게임을 시작할 때 나타날 효과음(끝 글씨 클릭시, 스테이지 진입시 들리는 것처럼 연출)
-
-    public AudioClip buttonClip; //끝 버튼에 효과음 구현.
+    
 
     public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
+
+    public Animator bonusTimeAnim; //Bonus Time Text에 쓰일 Animator
 
     /*UI 선언*/
     public Image matchPanel; //짝을 맞췄을 때 나올 배경
@@ -24,8 +22,9 @@ public class GameManager : MonoBehaviour
     public Text timetext;
     public Text endText;
     public Text scoreText;  // 점수를 표시할 text
+    public Text bonusTimeText;  // 보너스 & 페널티 시간 text
 
-    AudioSource audioSource;
+    
 
     float time;
     public float startTime = 60f;
@@ -44,7 +43,7 @@ public class GameManager : MonoBehaviour
     //Match사인 배경색
     Color FailColor = new Color(255 / 255f, 119 / 255f, 119 / 255f); //실패시 이미지 배경색.
     Color SuccessColor = new Color(154 / 255f, 255 / 255f, 154 / 255f);//성공시 이미지 배경색.
-    Color WaitingColor = new Color(190 / 255f, 190 / 255f, 190 / 255f); //평상시 이비지 배경색.
+    Color WaitingColor = new Color(1, 1, 1); //평상시 이비지 배경색.
 
     bool changeMusic = false;
 
@@ -70,9 +69,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
 
-        audioSource.PlayOneShot(startClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[4]);
+
         anim.SetBool("IsOver", false);
         isMatching = false;
         time = startTime - 5 * (LevelManager.Instance.selectLevel - 1);
@@ -112,7 +112,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            anim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
             StartCoroutine("EndGame");
         }
         if (time <= 0)
@@ -188,10 +187,13 @@ public class GameManager : MonoBehaviour
 
     public void ReTry()
     {
-        audioSource.PlayOneShot(buttonClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
 
-        AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
-        AudioManager.Instance.audioSource.Play();
+
+        Time.timeScale = 1f;
+
+        AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[0];
+        AudioManager.Instance.audioSource[0].Play();
         Board.isCardGenerated = false;
         SceneManager.LoadScene("StartScene");
     }
@@ -199,19 +201,24 @@ public class GameManager : MonoBehaviour
     /*카드를 맞췄을 때 나올 효과음 지연함수.*/
     void matchSoundInvoke()
     {
-        audioSource.PlayOneShot(matchClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[3]);
     }
 
     /*카드를 틀렸을 때 나올 효과음 지연함수.*/
     void failSoundInvoke()
     {
-        audioSource.PlayOneShot(failClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[1]);
     }
 
     IEnumerator EndGame()
     {
-        yield return new WaitForSecondsRealtime(1f);
-        endText.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1f); //카드 뒤집는 시간동안 지연.
+
+        endText.gameObject.SetActive(true); //엔드텍스트 활성화.
+        anim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
+
+        yield return new WaitForSecondsRealtime(2f); //애니메이션 시간동안 지연.
+
         scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString();
         Time.timeScale = 0f;
 
@@ -247,8 +254,8 @@ public class GameManager : MonoBehaviour
         {
             changeMusic = true;
 
-            AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[1];
-            AudioManager.Instance.audioSource.Play();
+            AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[1];
+            AudioManager.Instance.audioSource[0].Play();
         }
     }
 
@@ -268,10 +275,27 @@ public class GameManager : MonoBehaviour
     void BonusTime()
     {
         time += 1.5f;
+        BonusPenaltyTime(1.5f);
     }
 
     public void TimePenalty()
     {
         time -= 1f;
+        BonusPenaltyTime(-1f);
+    }
+
+    public void BonusPenaltyTime(float time)
+    {
+        bonusTimeAnim.SetTrigger("isBonusPenaltyTime");
+        if (time == 1.5f)
+        {
+            bonusTimeText.text = "+" + time.ToString() + "sec";
+            bonusTimeText.color = new Color(115 / 255f, 205 / 255f, 255 / 255f);
+        }   
+        else if(time == -1f)
+        {
+            bonusTimeText.text = time.ToString() + "sec";
+            bonusTimeText.color = new Color(255 / 255f, 76 / 255f, 84 / 255f);
+        }
     }
 }
