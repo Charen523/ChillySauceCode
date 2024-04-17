@@ -249,10 +249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e67ce6254df3847840c43d0642c260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: b802faa08d3dad146b34432ded264e4b, type: 3}
-  - {fileID: 8300000, guid: 1c64bd3a6ecc5c4409e8aa874c7315bf, type: 3}
-  audioSource: {fileID: 0}
+  bgmClips: []
+  sfxClips: []
+  audioSource:
+  - {fileID: 0}
 --- !u!4 &114520629
 Transform:
   m_ObjectHideFlags: 0
@@ -624,13 +624,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bf552b18c65d84b9e6e5291c9fc960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: aea59d712b62ad44aa4018847ca57964, type: 3}
   anim: {fileID: 1101368640}
+  bonusTimeAnim: {fileID: 0}
   matchPanel: {fileID: 139395160}
   matchTxt: {fileID: 1612641567}
   tryTxt: {fileID: 1406406693}
   timetext: {fileID: 1634938917}
   endText: {fileID: 1544474543}
+  scoreText: {fileID: 0}
+  bonusTimeText: {fileID: 0}
   startTime: 60
   bgmChangeTime: 10
   cardCount: 0
@@ -638,6 +640,10 @@ MonoBehaviour:
   tryNum: 0
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
+  bestScore: 0
+  bestTime: 0
+  bestScoreText: {fileID: 0}
+  bestTimeText: {fileID: 0}
 --- !u!224 &408076502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -883,7 +889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 3295508827465117659, guid: 0d6c6cb9637cd33478490dfacab2fc3a, type: 3}
-  cardMoveSound: {fileID: 8300000, guid: 6f4df5214b0c5d74c9444dc095711f63, type: 3}
 --- !u!4 &604561275
 Transform:
   m_ObjectHideFlags: 0
