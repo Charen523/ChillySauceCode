@@ -18,7 +18,7 @@ public class Board : MonoBehaviour
     int div;
     private void Awake()
     {
-        if (LevelManager.Instance.selectLevel == 2)
+        if (LevelManager.Instance.selectLevel >= 3)
         {
             cardArray = new int[] { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11 };
             div = 6;
