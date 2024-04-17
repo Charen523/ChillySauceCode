@@ -16,6 +16,7 @@ public class StartBtn : MonoBehaviour
 
     private void Update()
     {
+        /*
         if(time < 1.0f)
         {
             GetComponentInChildren<Text>().color = new Color(1, 1, 1, 1 - time);
@@ -27,7 +28,9 @@ public class StartBtn : MonoBehaviour
             {
                 time = 0f;
             }
+        
         }
+        */
     }
 
     public void StartGame()
