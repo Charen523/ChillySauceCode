@@ -11,35 +11,6 @@ public class Board : MonoBehaviour
     //카드가 다 생성 되었는지 확인
     [SerializeField]
     public static bool isCardGenerated;
-    public static int cardArrayLenght;
-
-    int[] cardArray;
-    float initX, initY, gapX, gapY, scale;
-    int div;
-    private void Awake()
-    {
-        if (LevelManager.Instance.selectLevel == 2)
-        {
-            cardArray = new int[] { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11 };
-            div = 6;
-            initX = 1.64f;
-            initY = 2.1f;
-            gapX = 0.72f;
-            gapY = 1.08f;
-            scale = 0.75f;
-        }
-        else
-        {
-            cardArray = new int[] { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-            div = 4;
-            initX = 1.65f;
-            initY = 3f;
-            gapX = 1.1f;
-            gapY = 1.4f;
-            scale = 1;
-        }
-        cardArrayLenght = cardArray.Length;
-    }
 
     void Start()
     {
@@ -47,16 +18,15 @@ public class Board : MonoBehaviour
 
         if (isCardGenerated == false)
         {
-            
+            int[] cardArray = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
             cardArray = ShuffleArray(cardArray);
+
             for (int i = 0; i < cardArray.Length; i++)
             {
-                float x = (i % div) * gapX - initX;
-                float y = (i / div) * gapY - initY;
+                float x = (i % 4) * 1.1f - 1.65f;
+                float y = (i / 4) * 1.4f - 3f;
 
                 GameObject go = Instantiate(card, new Vector2(0, 0), Quaternion.identity, transform);
-                go.transform.Find("body").transform.localScale = Vector2.one * scale;
-                //go.transform.localScale = Vector2.one * scale;
                 // 카드가 생성된 후 목표 위치로 날아가는 애니메이션 추가
                 LeanTween.move(go, new Vector2(x, y), 0.5f) // 목표 위치까지 이동
                          .setEase(LeanTweenType.easeOutBounce) // 이징 효과 설정
