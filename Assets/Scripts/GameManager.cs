@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
             endText.gameObject.SetActive(true);
             tryBoxAnim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
             Debug.Log("지연중");
-            Invoke("EndTimeInoke", 2.5f);
+            Invoke("EndTimeInoke", 2.0f);
 
         }
     }
