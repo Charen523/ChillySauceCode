@@ -16,18 +16,22 @@ public class StartBtn : MonoBehaviour
 
     private void Update()
     {
-        if(time < 1.0f)
+        //  ±ôºýÀÌ´Â È¿°ú ¾ÆÁ÷ ¹Ì¿Ï
+       /*
+        if(time < 2.0f)
         {
-            GetComponentInChildren<Text>().color = new Color(1, 1, 1, 1 - time);
+            GetComponentInChildren<Text>().color = new Color(0, 0, 0, 0 - time);
         }
         else
         {
-            GetComponentInChildren<Text>().color = new Color(1, 1, 1, time);
+            GetComponentInChildren<Text>().color = new Color(0, 0, 0, time);
             if(time > 1.0f)
             {
                 time = 0f;
             }
         }
+        time += Time.deltaTime;
+       */
     }
 
     public void StartGame()
