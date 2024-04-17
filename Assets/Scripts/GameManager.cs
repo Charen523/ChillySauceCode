@@ -282,7 +282,6 @@ public class GameManager : MonoBehaviour
 
     public void BonusPenaltyTime(float time)
     {
-        Debug.Log("»£√‚");
         bonusTimeAnim.SetTrigger("isBonusPenaltyTime");
         if (time == 1.5f)
         {
