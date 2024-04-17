@@ -7,8 +7,7 @@ public class Board : MonoBehaviour
     // x = -1.65f + i * 1.1f
     // y = -3f + j * 1.38f
     public GameObject card;
-   
-    public AudioClip cardMoveSound;
+       
     //카드가 다 생성 되었는지 확인
     [SerializeField]
     public static bool isCardGenerated;
@@ -46,7 +45,9 @@ public class Board : MonoBehaviour
     // 카드 이동 효과음 재생 함수
     void PlayCardMoveSound()
     {
-        AudioSource.PlayClipAtPoint(cardMoveSound, Camera.main.transform.position);
+       // AudioSource.PlayClipAtPoint(cardMoveSound, Camera.main.transform.position);
+
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[2]);
     }
 
 

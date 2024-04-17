@@ -5,20 +5,20 @@ using UnityEngine;
 public class PauseBtn : MonoBehaviour
 {
     public GameObject PauseMenu;
-    public AudioClip buttonClip;
+    
 
     public static bool isPaused = false;
 
-    AudioSource audioSource;
+    
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();  
+        
     }
 
     public void PushPauseMenu()
     {
-        audioSource.PlayOneShot(buttonClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
 
         if (!isPaused)
         {

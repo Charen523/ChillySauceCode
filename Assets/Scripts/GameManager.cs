@@ -9,11 +9,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public AudioClip matchClip; //카드 맞추기 성공했을 때 쓰이는 효과음.
-    public AudioClip failClip; //카드 맞추기 실패했을 때 쓰이는 효과음.
-    public AudioClip startClip; //게임을 시작할 때 나타날 효과음(끝 글씨 클릭시, 스테이지 진입시 들리는 것처럼 연출)
-
-    public AudioClip buttonClip; //끝 버튼에 효과음 구현.
+    
 
     public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
@@ -28,7 +24,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;  // 점수를 표시할 text
     public Text bonusTimeText;  // 보너스 & 페널티 시간 text
 
-    AudioSource audioSource;
+    
 
     float time;
     public float startTime = 60f;
@@ -73,9 +69,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
 
-        audioSource.PlayOneShot(startClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[4]);
+
         anim.SetBool("IsOver", false);
         isMatching = false;
         time = startTime - 5 * (LevelManager.Instance.selectLevel - 1);
@@ -190,11 +187,13 @@ public class GameManager : MonoBehaviour
 
     public void ReTry()
     {
-        audioSource.PlayOneShot(buttonClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
+
+
         Time.timeScale = 1f;
 
-        AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
-        AudioManager.Instance.audioSource.Play();
+        AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[0];
+        AudioManager.Instance.audioSource[0].Play();
         Board.isCardGenerated = false;
         SceneManager.LoadScene("StartScene");
     }
@@ -202,13 +201,13 @@ public class GameManager : MonoBehaviour
     /*카드를 맞췄을 때 나올 효과음 지연함수.*/
     void matchSoundInvoke()
     {
-        audioSource.PlayOneShot(matchClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[3]);
     }
 
     /*카드를 틀렸을 때 나올 효과음 지연함수.*/
     void failSoundInvoke()
     {
-        audioSource.PlayOneShot(failClip);
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[1]);
     }
 
     IEnumerator EndGame()
@@ -255,8 +254,8 @@ public class GameManager : MonoBehaviour
         {
             changeMusic = true;
 
-            AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[1];
-            AudioManager.Instance.audioSource.Play();
+            AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[1];
+            AudioManager.Instance.audioSource[0].Play();
         }
     }
 

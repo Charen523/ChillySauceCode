@@ -5,14 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class StratBtn : MonoBehaviour
 {
-    public AudioClip buttonClip;
-
-    AudioSource audioSource;
-
+    
     void Start()
     {
         LevelManager.Instance.LevelCheck();
-        audioSource = GetComponent<AudioSource>();
+        
     }
 
     public void StartGame()
@@ -23,7 +20,8 @@ public class StratBtn : MonoBehaviour
             // 메인씬으로 이동
             //SceneManager.LoadScene("MainScene");
 
-            audioSource.PlayOneShot(buttonClip);
+            AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
+
             LevelManager.Instance.OpenCanvas();
         }
     }

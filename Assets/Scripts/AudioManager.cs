@@ -6,9 +6,10 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioClip[] clips;
+    public AudioClip[] bgmClips;
+    public AudioClip[] sfxClips;
 
-    public AudioSource audioSource;
+    public AudioSource[] audioSource;
 
     private void Awake()
     {
@@ -26,10 +27,10 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      audioSource = GetComponent<AudioSource>();
+      audioSource = GetComponentsInChildren<AudioSource>();
 
-        audioSource.clip = clips[0];
-        audioSource.Play();
+        audioSource[0].clip = bgmClips[0];
+        audioSource[0].Play();
     }
 
     // Update is called once per frame
@@ -41,11 +42,11 @@ public class AudioManager : MonoBehaviour
     {
         if (PauseBtn.isPaused == true)
         {
-            audioSource.Pause();
+            audioSource[0].Pause();
         }
         else if (PauseBtn.isPaused == false)
         {
-            audioSource.UnPause();
+            audioSource[0].UnPause();
         }
     }
 
