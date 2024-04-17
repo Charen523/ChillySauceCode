@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     //Match사인 배경색
     Color FailColor = new Color(255 / 255f, 119 / 255f, 119 / 255f); //실패시 이미지 배경색.
     Color SuccessColor = new Color(154 / 255f, 255 / 255f, 154 / 255f);//성공시 이미지 배경색.
-    Color WaitingColor = new Color(190 / 255f, 190 / 255f, 190 / 255f); //평상시 이비지 배경색.
+    Color WaitingColor = new Color(1, 1, 1); //평상시 이비지 배경색.
 
     bool changeMusic = false;
 
