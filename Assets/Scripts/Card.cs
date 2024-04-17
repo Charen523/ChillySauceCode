@@ -143,7 +143,7 @@ public class Card : MonoBehaviour
     {
         
 
-        var rot = Mathf.Round(transform.localRotation.y) == 0f ? 180f : 0f;
+        var rot = Mathf.Round(transform.localRotation.y) ==0f ? 180f : 0f;
         if (rot < 0f) rot = 0f;
         LeanTween.rotateY(gameObject, rot, m_Speed)
             .setOnStart(() => ScaleCard(gameObject, Vector3.one * 1.1f))
@@ -155,8 +155,7 @@ public class Card : MonoBehaviour
     }
     public void ReverseCard()
     {
-        if (LeanTween.isTweening(gameObject))
-            return;
+        
 
 
         var rot = Mathf.Round(transform.localRotation.y) == 0f ? 180f : 0f;
