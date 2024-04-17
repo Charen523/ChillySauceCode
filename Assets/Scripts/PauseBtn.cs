@@ -28,6 +28,7 @@ public class PauseBtn : MonoBehaviour
             // 비 활성화 시켜두었던 PauseMenu가 등장
             PauseMenu.SetActive(true);
 
+
         }
         else
         {

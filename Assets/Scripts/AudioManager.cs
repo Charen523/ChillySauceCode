@@ -69,7 +69,9 @@ public class AudioManager : MonoBehaviour
         if (bgSound == -40f) AudioMixer.SetFloat("BGM", -80);
         else AudioMixer.SetFloat("BGM", bgSound);
 
-
+        // 볼륨 값 저장
+        PlayerPrefs.SetFloat("BGMVolume", bgSound);
+        PlayerPrefs.Save(); // 변경 사항 저장
 
     }
     //효과음 볼륨 조절
@@ -79,6 +81,10 @@ public class AudioManager : MonoBehaviour
 
         if (sfxSound == -40f) AudioMixer.SetFloat("SFX", -80);
         else AudioMixer.SetFloat("SFX", sfxSound);
+
+        // 볼륨 값 저장
+        PlayerPrefs.SetFloat("SFXVolume", sfxSound);
+        PlayerPrefs.Save(); // 변경 사항 저장
 
     }
 
