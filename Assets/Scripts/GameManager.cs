@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            anim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
             StartCoroutine("EndGame");
         }
         if (time <= 0)
@@ -192,6 +191,7 @@ public class GameManager : MonoBehaviour
     public void ReTry()
     {
         audioSource.PlayOneShot(buttonClip);
+        Time.timeScale = 1f;
 
         AudioManager.Instance.audioSource.clip = AudioManager.Instance.clips[0];
         AudioManager.Instance.audioSource.Play();
@@ -213,8 +213,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGame()
     {
-        yield return new WaitForSecondsRealtime(1f);
-        endText.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1f); //카드 뒤집는 시간동안 지연.
+
+        endText.gameObject.SetActive(true); //엔드텍스트 활성화.
+        anim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
+
+        yield return new WaitForSecondsRealtime(2f); //애니메이션 시간동안 지연.
+
         scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString();
         Time.timeScale = 0f;
 
