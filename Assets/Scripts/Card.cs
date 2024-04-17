@@ -151,7 +151,7 @@ public class Card : MonoBehaviour
             .setEase(leanTweenType);
         LeanTween.delayedCall(m_Speed / 2, () => ShowFront())
             .setEase(leanTweenType);
-        Debug.Log(rot);
+        //Debug.Log(rot);
     }
     public void ReverseCard()
     {
@@ -171,15 +171,15 @@ public class Card : MonoBehaviour
 
     protected void ShowFront()
     {
-        transform.Find("Front")?.gameObject.SetActive(true);
-        transform.Find("Back")?.gameObject.SetActive(false);
+        transform.Find("body")?.transform.Find("Front")?.gameObject.SetActive(true);
+        transform.Find("body")?.transform.Find("Back")?.gameObject.SetActive(false);
         
     }
 
     protected void ShowBack()
     {
-        transform.Find("Front")?.gameObject.SetActive(false);
-        transform.Find("Back")?.gameObject.SetActive(true);
+        transform.Find("body")?.transform.Find("Front")?.gameObject.SetActive(false);
+        transform.Find("body")?.transform.Find("Back")?.gameObject.SetActive(true);
         
     }
 

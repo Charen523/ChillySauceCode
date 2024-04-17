@@ -64,13 +64,11 @@ public class GameManager : MonoBehaviour
     {
         Singleton();
         Time.timeScale = 1f;
-        cardCount = 16;
     }
     // Start is called before the first frame update
     void Start()
     {
-        
-
+        cardCount = Board.cardArrayLenght;
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[4]);
 
         anim.SetBool("IsOver", false);
@@ -181,6 +179,7 @@ public class GameManager : MonoBehaviour
         }
 
         Invoke("MatchInvoke", 1f); //1초 후 대기 상태로 복귀.
+        Debug.Log("호출");
         firstCard = null;
         secondCard = null;
     }
