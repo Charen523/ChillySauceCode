@@ -11,30 +11,32 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     /*Animator 선언*/
-    public Animator tryBoxAnim; //TryBox를 움직이는 데에 쓰일 예정.
-    public Animator bonusTimeAnim; //Bonus Time Text에 쓰일 Animator
+    public Animator tryBoxAnim; //TryBox를 움직이는 데에 쓰일 Animator.
+    public Animator bonusTimeAnim; //Bonus Time Text에 쓰일 Animator.
+
 
     /*UI 선언*/
-    public Image matchPanel; //짝을 맞췄을 때 나올 판넬.
+    public Image matchPanel; //짝 맞추기 결과 Panel.
     public Image timeFull; //시간이 줄어드는 것을 보여줄 UI.
-    public Text matchText; //짝을 맞췄을 때 나올 text
-    public Text tryText; //뒤집기 시도한 횟수를 보여줄 text
-    public Text timeText;
-    public Text endText;
-    public Text scoreText;  // 점수를 표시할 text
-    public Text bonusTimeText;  // 보너스 & 페널티 시간 text
-    public Text bestScoreText;
-    public Text bestTimeText;
+    public Text matchText; //짝을 맞췄을 때 나올 Text.
+    public Text tryText; //뒤집기 시도한 횟수를 보여줄 Text.
+    public Text timeText; //남은 시간을 표시하는 Text.
+    public Text endText; //게임이 끝났음을 표시하는 Text. 버튼의 역할도 함.(ReTry 함수)
+    public Text scoreText;  // 점수를 표시할 Text.
+    public Text bonusTimeText;  // 보너스 & 페널티 시간 Text.
+    public Text bestScoreText; //최고점수 Text.
+    public Text bestTimeText; //최단시간 Text.
 
     // 게임 진행중 카드 선택 시 카드 오브젝트가 저장될 변수.
     public Card firstCard;
     public Card secondCard;
 
-    float time;
-    public float startTime = 60f;
-    public float bgmChangeTime = 10f;
+    /*시간 관련 변수*/
+    float time; //현재 시간을 저장하는 변수.
+    float startTime = 60f; //스테이지 당 총 시간을 저장하는 변수.
+    float bgmChangeTime = 10f; //bgm이 변하는 시간을 저장하는 변수.
 
-    public int cardCount;
+    public int cardCount; //카드
 
     public bool isMatching;
 
