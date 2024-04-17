@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public Animator anim; //TryBox를 움직이는 데에 쓰일 예정.
 
+    public Animator bonusTimeAnim; //Bonus Time Text에 쓰일 Animator
+
     /*UI 선언*/
     public Image matchPanel; //짝을 맞췄을 때 나올 배경
     public Text matchTxt; //짝을 맞췄을 때 나올 text
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Text timetext;
     public Text endText;
     public Text scoreText;  // 점수를 표시할 text
+    public Text bonusTimeText;  // 보너스 & 페널티 시간 text
 
     AudioSource audioSource;
 
@@ -268,10 +271,28 @@ public class GameManager : MonoBehaviour
     void BonusTime()
     {
         time += 1.5f;
+        BonusPenaltyTime(1.5f);
     }
 
     public void TimePenalty()
     {
         time -= 1f;
+        BonusPenaltyTime(-1f);
+    }
+
+    public void BonusPenaltyTime(float time)
+    {
+        Debug.Log("호출");
+        bonusTimeAnim.SetTrigger("isBonusPenaltyTime");
+        if (time == 1.5f)
+        {
+            bonusTimeText.text = "+" + time.ToString() + "sec";
+            bonusTimeText.color = new Color(115 / 255f, 205 / 255f, 255 / 255f);
+        }   
+        else if(time == -1f)
+        {
+            bonusTimeText.text = time.ToString() + "sec";
+            bonusTimeText.color = new Color(255 / 255f, 76 / 255f, 84 / 255f);
+        }
     }
 }
