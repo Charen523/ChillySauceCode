@@ -2299,13 +2299,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tryBoxAnim: {fileID: 142632402}
   bonusTimeAnim: {fileID: 1663622267}
+  Explosion: {fileID: 6313839553981001725, guid: 6a831193c958d0748b5f61a0f3d990bd, type: 3}
+  Fireball: {fileID: 2229919618641844323, guid: 096e459da9bbb0947985c0293e56ca21, type: 3}
   matchPanel: {fileID: 1145266541}
   timeFull: {fileID: 1690240760}
   matchText: {fileID: 1575319484}
   tryText: {fileID: 1999487586}
   timeText: {fileID: 1822451619}
-  endText: {fileID: 0}
-  scoreText: {fileID: 0}
+  endText: {fileID: 584941415692414100}
+  scoreText: {fileID: 2058957153450704698}
   bonusTimeText: {fileID: 1663622266}
   bestScoreText: {fileID: 1834805716}
   bestTimeText: {fileID: 583690119}
