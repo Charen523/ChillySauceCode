@@ -224,9 +224,15 @@ public class GameManager : MonoBehaviour
         endText.gameObject.SetActive(true); //엔드텍스트 활성화.
         tryBoxAnim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
         scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString(); //점수 UI에 점수 계산식의 결과값의 텍스트를 할당
+<<<<<<< Updated upstream
        
         yield return new WaitForSecondsRealtime(2f); //애니메이션 시간동안 지연.
         
+=======
+
+        yield return new WaitForSecondsRealtime(2f); //애니메이션 시간동안 지연.
+
+>>>>>>> Stashed changes
         Time.timeScale = 0f; // 시간 정지
         if (unlockLevel <= selectLevel)
         {
