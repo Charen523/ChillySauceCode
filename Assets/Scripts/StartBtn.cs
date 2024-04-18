@@ -16,9 +16,11 @@ public class StartBtn : MonoBehaviour
 
     private void Update()
     {
-        //  ±ôºýÀÌ´Â È¿°ú ¾ÆÁ÷ ¹Ì¿Ï
-       /*
-        if(time < 2.0f)
+
+
+        /*
+        if(time < 1.0f)
+
         {
             GetComponentInChildren<Text>().color = new Color(0, 0, 0, 0 - time);
         }
@@ -29,17 +31,20 @@ public class StartBtn : MonoBehaviour
             {
                 time = 0f;
             }
+        
         }
+
         time += Time.deltaTime;
        */
-    }
+
+
 
     public void StartGame()
     {
-        //ÀÏ½ÃÁ¤Áö ¹öÆ°ÀÌ ´­¸®Áö ¾Ê¾Ò´Ù¸é
+        //ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½
         if (PauseBtn.isPaused != true)
         {
-            // ¸ÞÀÎ¾ÀÀ¸·Î ÀÌµ¿
+            // ï¿½ï¿½ï¿½Î¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             //SceneManager.LoadScene("MainScene");
 
             AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
