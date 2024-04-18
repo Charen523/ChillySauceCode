@@ -1,24 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseBtn : MonoBehaviour
 {
     public GameObject PauseMenu;
-    
+
 
     public static bool isPaused = false;
-
-    
+    Scene currentScene;
 
     private void Start()
     {
-        
+
+
     }
 
     public void PushPauseMenu()
     {
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
+        currentScene = SceneManager.GetActiveScene();
+        Debug.Log(currentScene.name);
 
         if (!isPaused)
         {
@@ -40,4 +43,23 @@ public class PauseBtn : MonoBehaviour
 
         }
     }
+
+    public void GoBackToStartScene()
+    {
+        if (currentScene.name != "StartScene")
+        {
+
+            AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
+            Time.timeScale = 1f;
+            AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[0];
+            AudioManager.Instance.audioSource[0].Play();
+            Board.isCardGenerated = false;
+            PauseMenu.SetActive(false);
+            isPaused = false;
+            SceneManager.LoadScene("StartScene");
+            //스타트버튼 깜빡임 다시 시작되도록 값 변경
+            StartBtn.isStartBtnPushed = false;
+        }
+    }
+
 }
