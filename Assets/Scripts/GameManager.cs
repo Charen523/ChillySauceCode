@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
 
         if (selectLevel == 4) //Fireball »ý¼º
         {
-            InvokeRepeating("FireballAppear", 0f, 0.1f);
+            InvokeRepeating("FireballAppear", 0f, 0.2f);
         }
     }
    
