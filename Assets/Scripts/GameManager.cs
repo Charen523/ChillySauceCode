@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -302,6 +303,14 @@ public class GameManager : MonoBehaviour
         {
             bonusTimeText.text = time.ToString() + "sec"; // 텍스트 할당
             bonusTimeText.color = new Color(255 / 255f, 76 / 255f, 84 / 255f); //색상 변경
+        }
+    }
+
+    public void FireBall()
+    {
+        if (selectLevel >= 2) // 스테이지가 2 이상인가? 
+        { 
+            
         }
     }
 }
