@@ -24,16 +24,18 @@ public class Card : MonoBehaviour
 
     void Update()
     {
-        if (firstCardOpened)// 첫번째 카드 오픈 여부
-        {
-            cardOpenedTime += Time.deltaTime; // 시간 증가
-
-            /*카드를 열고 일정 시간이 지나면 패널티 부여와 함께 첫 번째 카드 닫기*/
-            if (cardOpenedTime > 1f) // 카드가 열린 시간 카운트
+        if (GameManager.Instance.firstCard != null) { 
+            if (firstCardOpened)// 첫번째 카드 오픈 여부
             {
-                GameManager.Instance.firstCard.CloseCard(); // 첫번째 카드 닫기
-                GameManager.Instance.firstCard = null; // 첫번째 카드 데이터 초기화
-                Invoke("TimePenaltyInvoke", 1f); //1초 후 시간 패널티 부여
+                cardOpenedTime += Time.deltaTime; // 시간 증가
+
+                /*카드를 열고 일정 시간이 지나면 패널티 부여와 함께 첫 번째 카드 닫기*/
+                if (cardOpenedTime > 2f) // 카드가 열린 시간 카운트
+                {
+                    GameManager.Instance.firstCard.CloseCard(); // 첫번째 카드 닫기
+                    GameManager.Instance.firstCard = null; // 첫번째 카드 데이터 초기화
+                    Invoke("TimePenaltyInvoke", 1f); //1초 후 시간 패널티 부여
+                }
             }
         }
     }
