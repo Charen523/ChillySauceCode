@@ -7,7 +7,7 @@ public class Fireball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float x = Random.Range(-1.5f, 1.5f);
+        float x = Random.Range(-2f, 2f);
         float y = 6;
 
         transform.position = new Vector2(x, y);

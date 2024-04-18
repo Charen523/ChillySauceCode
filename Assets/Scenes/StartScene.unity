@@ -1483,6 +1483,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6f4df5214b0c5d74c9444dc095711f63, type: 3}
   - {fileID: 8300000, guid: aea59d712b62ad44aa4018847ca57964, type: 3}
   - {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  - {fileID: 8300000, guid: d1698dd553af8ef4d887bc83b9687173, type: 3}
+  - {fileID: 8300000, guid: c0e4902652661914698184d72ae0e54b, type: 3}
   audioSource: []
 --- !u!4 &397684195
 Transform:
@@ -2358,6 +2360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619124bd98352dc44904981dfa763edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelSelectCanvas: {fileID: 1968770388}
   unlockLevel: 0
   selectLevel: 0
   stageSelectButton:
@@ -2365,7 +2368,6 @@ MonoBehaviour:
   - {fileID: 1734752264}
   - {fileID: 309119006}
   - {fileID: 1895862446}
-  levelSelectCanvas: {fileID: 1968770388}
 --- !u!1 &1488066206
 GameObject:
   m_ObjectHideFlags: 0

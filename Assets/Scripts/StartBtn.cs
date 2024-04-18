@@ -1,44 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class StartBtn : MonoBehaviour
 {
-    //스타트 버튼이 눌렸는지 확인
-    public static bool isStartBtnPushed = false;
+    public static bool isStartBtnPushed = false; //스타트 버튼 활성화 여부 감지
 
     void Start()
     {
-        LevelManager.Instance.LevelCheck();
-       
-
+        LevelManager.Instance.LevelCheck(); //해금 레벨 재확인
     }
 
-    private void Update()
-    {
-        
-
-    }
-
+    /*스타트 버튼 클릭 시*/
     public void StartGame()
     {
-        
-        if (PauseBtn.isPaused != true)
+        if (PauseBtn.isPaused != true) //Pause 상태가 아니라면
         {
-            
-            //SceneManager.LoadScene("MainScene");
+            AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]); //버튼 효과음
+            LevelManager.Instance.OpenCanvas(); //레벨판넬 활성화
 
-            AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
-
-            LevelManager.Instance.OpenCanvas();
-            //스타트 버튼이 눌림
-            isStartBtnPushed = true;
+            isStartBtnPushed = true; //스타트 버튼 비활성화 (애니메이션 재생 방지)
         }
     }
-
-    
-
 }
