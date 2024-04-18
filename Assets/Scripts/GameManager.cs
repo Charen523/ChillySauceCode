@@ -56,9 +56,6 @@ public class GameManager : MonoBehaviour
 
     int selectLevel; //LevelManager에서 받아오는 현재 레벨 변수.
     int unlockLevel; //LevelManager에서 받아오는 플레이어의 해금 레벨 변수.
-
-    static bool overTimeCheck;
-
     public void Awake()
     {
         Singleton();
@@ -71,8 +68,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[4]);
 
         tryBoxAnim.SetBool("IsOver", false);
-        overTimeCheck = false;
-
+        
         isMatching = false; // 매칭 상태 bool 초기화
         startTime = startTime - 5 * (LevelManager.Instance.selectLevel - 1); //난이도에 따라 게임 시간 변경.
         bgmChangeTime = startTime / 5; // BGM 교체 시간을 게임 시간에 따라 변경.
@@ -96,6 +92,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeText.text = time.ToString("N2"); // 타이머 UI에 텍스트 할당
 
         if (time > 0) // 현재 시간이 0 보다 많을 때 (게임 진행 중)
         {
@@ -117,7 +114,7 @@ public class GameManager : MonoBehaviour
                 timeFull.fillAmount = time / startTime; //timeFull 이미지가 시간에 비례해 줄어듦.
             }
 
-            timeText.text = time.ToString("N2"); // 타이머 UI에 텍스트 할당
+            
         }
         else
         {
@@ -219,26 +216,16 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[1]);
     }
 
-    public static int i = 0;
-
     /*정상적으로 스테이지를 클리어한 경우 게임을 끝내는 메서드 (카드 갯수 < 0 && 남은 시간 > 0)*/
     IEnumerator EndGame()
     {
-        if (!overTimeCheck)
-        {
-            overTimeCheck = !overTimeCheck;
-            i++;
-            Debug.Log(i);
-            time += 1.5f;
-        }
-        
         /*새 스테이지 해금.*/
         if (unlockLevel <= selectLevel)
         {
             PlayerPrefs.SetInt("stageLevel", selectLevel + 1);
         }
 
-        score = (int)(time * 100f) - 10 * tryNum;
+        score = (int)(time * 100f) - 10 * tryNum; //점수 계산.
 
         if (score > bestScore) // 현재 점수가 최고 점수보다 높은가?
         {
@@ -257,7 +244,6 @@ public class GameManager : MonoBehaviour
         scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString(); //점수 UI에 점수 계산식의 결과값의 텍스트를 할당
         yield return new WaitForSecondsRealtime(2f); //애니메이션 시간동안 지연.
         
-
         Time.timeScale = 0f; // 시간 정지
     }
 
