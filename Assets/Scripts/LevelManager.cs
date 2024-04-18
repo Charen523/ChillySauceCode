@@ -65,7 +65,7 @@ public class LevelManager : MonoBehaviour
 
         unlockLevel = PlayerPrefs.GetInt("stageLevel", 1);
 
-
+        Debug.Log(unlockLevel);
 
         for (int i = 0; i < stageSelectButton.Length; i++)
         {
