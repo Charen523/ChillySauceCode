@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
         {
             if (unlockLevel <= i)
             {
-                stageSelectButton[i].interactable = true; //false¿©¾ß ÇÔ.
+                stageSelectButton[i].interactable = false;
             }
             else
             {
