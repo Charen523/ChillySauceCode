@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
         tryBoxAnim.SetBool("IsOver", false);
         isMatching = false;
         startTime = startTime - 5 * (LevelManager.Instance.selectLevel - 1); //난이도에 따라 게임시간 변경.
+        bgmChangeTime = startTime / 5;
+        
         time = startTime; //
 
         timeFull.fillAmount = 1;
