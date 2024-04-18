@@ -15,26 +15,28 @@ ${\textsf{\color{red}코드}}$
 
 ### 프로젝트 기간(Schedule).
 2024년 4월 15일 ~ 2024년 4월 19일
+
+### 프로젝트 핵심 기능.
+배경음 및 효과음 사용자 설정 기능 및 설정 저장
+여러 기기에서 동작이 가능하도록 자동 해상도 설정
+스테이지 선택 및 해금 기능 구현
+선택한 스테이지에 따라 난이도 증가
+같은 이미지를 가진 1쌍의 카드를 보드에 랜덤하게 배열
+클릭으로 카드를 뒤집고 두 카드가 같으면 파괴, 다르면 다시 뒤집는 매칭 시스템 구현
+매칭 결과에 따라 점수 및 시간이 증감하는 시스템 구현
+
   
 ### 팀원 소개
 #### 정승연 (팀장)
-  * MBTI : INTP
-  * 나이 : 25
   * GITHUB : https://github.com/Charen523
   * 블로그 : https://better-constructor123.tistory.com/manage/posts/    
 #### 김영선 (팀원)
-  * MBTI : ISFP
-  * 나이 : 25
   * GITHUB : https://github.com/Mrdosim
   * 블로그 : https://mrdosim.tistory.com/     
 #### 이승영 (팀원)
-  * MBTI : ISTP
-  * 나이 : 28
   * GITHUB : https://github.com/lsy1304
   * 블로그 : https://lsy130425.tistory.com/   
 #### 박재균 (팀원)
-  * MBTI : INFP
-  * 나이 : 30
   * GITHUB : https://github.com/JaeGyoon
   * 블로그 : https://velog.io/@balance/posts
 
