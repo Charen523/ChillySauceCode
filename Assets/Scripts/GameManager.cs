@@ -195,13 +195,13 @@ public class GameManager : MonoBehaviour
     public void ReTry()
     {
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
-        
         Time.timeScale = 1f;
-
         AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[0];
         AudioManager.Instance.audioSource[0].Play();
         Board.isCardGenerated = false;
         SceneManager.LoadScene("StartScene");
+        //스타트버튼 깜빡임 다시 시작되도록 값 변경
+        StartBtn.isStartBtnPushed = false;
     }
 
     /*카드를 맞췄을 때 나올 효과음 지연함수.*/
@@ -220,27 +220,26 @@ public class GameManager : MonoBehaviour
     IEnumerator EndGame()
     {
         yield return new WaitForSecondsRealtime(1f); //카드 뒤집는 시간동안 지연.
-
+        
         endText.gameObject.SetActive(true); //엔드텍스트 활성화.
         tryBoxAnim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
-
-        yield return new WaitForSecondsRealtime(2f); //애니메이션 시간동안 지연.
-
         scoreText.text = ((int)(time * 100f) - 10 * tryNum).ToString(); //점수 UI에 점수 계산식의 결과값의 텍스트를 할당
+       
+        yield return new WaitForSecondsRealtime(2f); //애니메이션 시간동안 지연.
+        
         Time.timeScale = 0f; // 시간 정지
-
         if (unlockLevel <= selectLevel)
         {
             PlayerPrefs.SetInt("stageLevel", selectLevel + 1);
         }
-
+       
         score = (int)(time * 100f) - 10 * tryNum;
-
+        
         if (score > bestScore) // 현재 점수가 최고 점수보다 높은가?
         {
             PlayerPrefs.SetInt("Stage" + selectLevel + "_Score", score); // 최고 점수 레지스트리에 현재 점수 할당
         }
-
+        
         if (time > bestTime) // 현재 남은 시간이 최단 기록보다 높은가? (더 빨리 클리어 했는가?)
         {
             PlayerPrefs.SetFloat("Stage" + selectLevel + "_Time", time); // 최단 기록 레지스트리에 현재 남은 시간 할당
