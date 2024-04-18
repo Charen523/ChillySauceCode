@@ -2306,8 +2306,8 @@ MonoBehaviour:
   matchText: {fileID: 1575319484}
   tryText: {fileID: 1999487586}
   timeText: {fileID: 1822451619}
-  endText: {fileID: 584941414860098170}
-  scoreText: {fileID: 8592587103865469449}
+  endText: {fileID: 1821949429833635274}
+  scoreText: {fileID: 2058957152269736404}
   bonusTimeText: {fileID: 1663622266}
   bestScoreText: {fileID: 1834805716}
   bestTimeText: {fileID: 583690119}

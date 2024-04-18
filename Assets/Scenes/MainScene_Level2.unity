@@ -712,7 +712,7 @@ MonoBehaviour:
   matchText: {fileID: 1612641567}
   tryText: {fileID: 1406406693}
   timeText: {fileID: 1634938917}
-  endText: {fileID: 5783402232452954774}
+  endText: {fileID: 4689436832777905446}
   scoreText: {fileID: 4957907048669915448}
   bonusTimeText: {fileID: 1973852338}
   bestScoreText: {fileID: 475938521}
