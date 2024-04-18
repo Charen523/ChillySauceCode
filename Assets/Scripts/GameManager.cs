@@ -54,8 +54,10 @@ public class GameManager : MonoBehaviour
 
     public float bestTime; // 최단 시간을 저장하는 변수
 
-    int selectLevel;
-    int unlockLevel;
+    int selectLevel; //LevelManager에서 받아오는 현재 레벨 변수.
+    int unlockLevel; //LevelManager에서 받아오는 플레이어의 해금 레벨 변수.
+
+    static bool overTimeCheck;
 
     public void Awake()
     {
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[4]);
 
         tryBoxAnim.SetBool("IsOver", false);
+        overTimeCheck = false;
 
         isMatching = false; // 매칭 상태 bool 초기화
         startTime = startTime - 5 * (LevelManager.Instance.selectLevel - 1); //난이도에 따라 게임 시간 변경.
@@ -187,7 +190,7 @@ public class GameManager : MonoBehaviour
         }
 
         Invoke("MatchInvoke", 1f); //1초 후 대기 상태로 복귀.
-        Debug.Log("호출");
+        
         firstCard = null; //데이터 초기화
         secondCard = null; //데이터 초기화
     }
@@ -221,10 +224,14 @@ public class GameManager : MonoBehaviour
     /*정상적으로 스테이지를 클리어한 경우 게임을 끝내는 메서드 (카드 갯수 < 0 && 남은 시간 > 0)*/
     IEnumerator EndGame()
     {
-        i++;
-        Debug.Log(i);
-        time += 1.5f;
-
+        if (!overTimeCheck)
+        {
+            overTimeCheck = !overTimeCheck;
+            i++;
+            Debug.Log(i);
+            time += 1.5f;
+        }
+        
         /*새 스테이지 해금.*/
         if (unlockLevel <= selectLevel)
         {
