@@ -195,13 +195,13 @@ public class GameManager : MonoBehaviour
     public void ReTry()
     {
         AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
-        
         Time.timeScale = 1f;
-
         AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[0];
         AudioManager.Instance.audioSource[0].Play();
         Board.isCardGenerated = false;
         SceneManager.LoadScene("StartScene");
+        //스타트버튼 깜빡임 다시 시작되도록 값 변경
+        StartBtn.isStartBtnPushed = false;
     }
 
     /*카드를 맞췄을 때 나올 효과음 지연함수.*/
