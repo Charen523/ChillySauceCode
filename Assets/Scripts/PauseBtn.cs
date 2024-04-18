@@ -1,42 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseBtn : MonoBehaviour
 {
-    public GameObject PauseMenu;
+    public GameObject PauseMenu; //퍼즈 메뉴
+    public static bool isPaused = false; //Pause 상태 전달
     
+    Scene currentScene; //현재 씬
 
-    public static bool isPaused = false;
-
-    
-
-    private void Start()
-    {
-        
-    }
-
+    /*Pause 버튼 클릭 시*/
     public void PushPauseMenu()
     {
-        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
-
-        if (!isPaused)
+        AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]); //버튼 효과음
+        currentScene = SceneManager.GetActiveScene(); //현재 화면 불러오기
+        
+        if (!isPaused) //Pause 상태가 아니라면
         {
-            // 일시 정지 버튼을 눌러 isPaused = false면 게임을 멈춤
-            Time.timeScale = 0.0f;
-            isPaused = true;
-            // 비 활성화 시켜두었던 PauseMenu가 등장
-            PauseMenu.SetActive(true);
-
+            isPaused = true; //Pause 상태 활성화
+            Time.timeScale = 0.0f; //시간 멈춤
+            PauseMenu.SetActive(true); //Pause메뉴 활성화
         }
-        else
+        else //Pause 상태라면
         {
-            // isPaused = true 면 다시 게임을 재개
-            Time.timeScale = 1.0f;
-            isPaused = false;
-            // 활성화 되었던 PasueMenu가 다시 비활성화
-            PauseMenu.SetActive(false);
-
+            isPaused = false; //Pause 상태 비활성화
+            Time.timeScale = 1.0f; //시간 재개
+            PauseMenu.SetActive(false); //Pause메뉴 비활성화
         }
     }
+
+    /*메인메뉴 버튼 클릭 시*/
+    public void GoBackToStartScene()
+    {
+        if (currentScene.name != "StartScene") //스타트씬이 아닐 때만 버튼 활성화
+        {
+            AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]); //버튼 효과음
+
+            /*배경음악 재생*/
+            AudioManager.Instance.audioSource[0].clip = AudioManager.Instance.bgmClips[0]; 
+            AudioManager.Instance.audioSource[0].Play();
+            
+            /*퍼즈 메뉴 없애기*/
+            isPaused = false; //Pause 상태 비활성화
+            Time.timeScale = 1f; //시간 재개
+            PauseMenu.SetActive(false); //Pause메뉴 비활성화
+
+            StartBtn.isStartBtnPushed = false; //스타트버튼 깜빡임 다시 재생
+            
+            SceneManager.LoadScene("StartScene"); //스타트씬으로 로드
+        }
+    }
+
 }
