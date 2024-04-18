@@ -188,7 +188,9 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < selectLevel; i++)
                 {
-
+                    Invoke("ExplosinAppear", 1.0f);
+                    Invoke("ExplosinAppear", 1.2f);
+                    Invoke("ExplosinAppear", 1.4f);
                 }
             }
 
