@@ -2,18 +2,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
+
+    public GameObject Explosion; //2레벨~ 방해물: 실패시 화면 살짝 가리는 효과.
+    public GameObject Fireball; //4레벨 방해물: 하늘에서 내리는 메테오.
+
     /*Animator 선언*/
     public Animator tryBoxAnim; //TryBox를 움직이는 데에 쓰일 Animator.
     public Animator bonusTimeAnim; //Bonus Time Text에 쓰일 Animator.
-    public Animator Explosion; //2레벨~ 방해물: 실패시 화면 살짝 가리는 효과.
-    public Animator Fireball; //4레벨 방해물: 하늘에서 내리는 메테오.
-
 
     /*UI 선언*/
     public Image matchPanel; //짝 맞추기 결과 Panel.
@@ -306,7 +305,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FireBall()
+    public void disturbObject()
     {
         if (selectLevel >= 2) // 스테이지가 2 이상인가? 
         { 

@@ -522,10 +522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bf552b18c65d84b9e6e5291c9fc960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Explosion: {fileID: 2098390904379341941, guid: 6a831193c958d0748b5f61a0f3d990bd, type: 3}
+  Fireball: {fileID: 1486402237147685211, guid: 096e459da9bbb0947985c0293e56ca21, type: 3}
   tryBoxAnim: {fileID: 1101368640}
   bonusTimeAnim: {fileID: 1973852337}
-  Explosion: {fileID: 6313839553981001725, guid: 6a831193c958d0748b5f61a0f3d990bd, type: 3}
-  Fireball: {fileID: 2229919618641844323, guid: 096e459da9bbb0947985c0293e56ca21, type: 3}
   matchPanel: {fileID: 139395160}
   timeFull: {fileID: 1888212929}
   matchText: {fileID: 1612641567}
