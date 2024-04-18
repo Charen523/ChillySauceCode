@@ -80,9 +80,16 @@ public class GameManager : MonoBehaviour
         timeFull.fillAmount = 1; // 시간 막대 UI 초기화
 
         Invoke("MatchInvoke", 0f); //Match사인 초기화.
-
+        
         unlockLevel = LevelManager.Instance.unlockLevel;
         selectLevel = LevelManager.Instance.selectLevel;
+
+        /*Fireball 생성*/
+        if (selectLevel == 4) //스테이지가 4인가?
+        {
+            InvokeRepeating("FireballAppear", 0f, 0.1f);
+        }
+
 
         bestScore = PlayerPrefs.GetInt("Stage" + selectLevel + "_Score"); // 레지스트리에 저장되있는 현재 스테이지의 최고 점수 할당
         bestTime = PlayerPrefs.GetFloat("Stage" + selectLevel + "_Time"); // 레지스트리에 저장되있는 현재 스테이지의 최단 기록 할당
@@ -90,7 +97,7 @@ public class GameManager : MonoBehaviour
         bestScoreText.text = "최고점수: " + bestScore.ToString(); // 최고 점수 UI에 텍스트 할당
         bestTimeText.text = "최단기록: " + bestTime.ToString("N2"); // 최단 기록 UI에 텍스트 할당
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -105,6 +112,7 @@ public class GameManager : MonoBehaviour
 
         if (cardCount > 0) // 남은 카드 갯수가 0보다 많을 때
         {
+
             if (time <= 0)  // 남은 시간이 0 이하가 되었을 때
                 time = 0f; // 타이머를 0으로 고정
             else
@@ -175,6 +183,15 @@ public class GameManager : MonoBehaviour
             matchPanel.color = FailColor; //매치판넬을 붉은색으로 변경.
             matchText.text = "실패..."; //매치텍스트를 실패로 변경.
             Invoke("failSoundInvoke", 1f); //실패시 효과음 재생.
+
+            if (selectLevel >= 2)
+            {
+                for (int i = 0; i < selectLevel; i++)
+                {
+
+                }
+            }
+
 
             /*실패시 카드 원래대로 뒤집기*/
             firstCard.CloseCard();
@@ -305,11 +322,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void disturbObject()
+    void ExplosinAppear()
     {
-        if (selectLevel >= 2) // 스테이지가 2 이상인가? 
-        { 
-            
-        }
+        Instantiate(Explosion);
+    }
+
+    void FireballAppear()
+    {
+        Instantiate(Fireball);
     }
 }

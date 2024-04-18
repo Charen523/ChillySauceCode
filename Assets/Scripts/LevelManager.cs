@@ -57,6 +57,7 @@ public class LevelManager : MonoBehaviour
 
         selectLevel = sceneIndex;
 
+        Debug.Log(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
 
