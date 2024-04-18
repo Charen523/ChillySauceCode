@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     /*Animator 선언*/
     public Animator tryBoxAnim; //TryBox를 움직이는 데에 쓰일 Animator.
     public Animator bonusTimeAnim; //Bonus Time Text에 쓰일 Animator.
+    public Animator Explosion; //2레벨~ 방해물: 실패시 화면 살짝 가리는 효과.
+    public Animator Fireball; //4레벨 방해물: 하늘에서 내리는 메테오.
 
 
     /*UI 선언*/
@@ -93,13 +95,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timeText.text = time.ToString("N2"); // 타이머 UI에 텍스트 할당
+        TextColorUpdate(); //시간이 줄어듦에 따라 시간텍스트 붉어짐.
 
-        if (time > 0) // 현재 시간이 0 보다 많을 때 (게임 진행 중)
-        {
-            TextColorUpdate();
-        }
-
-        if (time < bgmChangeTime) // 현재 시간이 BGM 변경 시간에 도달했을 때 (제한 시간 임박)
+        // 현재 시간이 BGM 변경 시간에 도달했을 때 (제한 시간 임박)
+        if (time < bgmChangeTime) 
         {
             BGMChange();
         }
@@ -113,8 +112,6 @@ public class GameManager : MonoBehaviour
                 time -= Time.deltaTime; // 타이머 감소
                 timeFull.fillAmount = time / startTime; //timeFull 이미지가 시간에 비례해 줄어듦.
             }
-
-            
         }
         else
         {
@@ -126,7 +123,6 @@ public class GameManager : MonoBehaviour
             tryBoxAnim.SetBool("IsOver", true); //시도 UI 애니메이션 움직임 재생.
             Debug.Log("지연중");
             Invoke("EndTimeInoke", 2.0f);
-
         }
     }
     // 싱글톤 화
@@ -251,7 +247,6 @@ public class GameManager : MonoBehaviour
     void TextColorUpdate()
     {
         float textColor = time / startTime; // 시간이 지남에 따라 서서히 감소함
-
         timeText.color = new Color(1f, textColor, textColor); // 시간이 지남에 따라 흰색 -> 빨강으로 변화함
     }
 

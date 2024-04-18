@@ -705,13 +705,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tryBoxAnim: {fileID: 1101368640}
   bonusTimeAnim: {fileID: 1973852337}
+  Explosion: {fileID: 6313839553981001725, guid: 6a831193c958d0748b5f61a0f3d990bd, type: 3}
+  Fireball: {fileID: 2229919618641844323, guid: 096e459da9bbb0947985c0293e56ca21, type: 3}
   matchPanel: {fileID: 139395160}
   timeFull: {fileID: 1888212929}
   matchText: {fileID: 1612641567}
   tryText: {fileID: 1406406693}
   timeText: {fileID: 1634938917}
-  endText: {fileID: 0}
-  scoreText: {fileID: 0}
+  endText: {fileID: 4689436832777905446}
+  scoreText: {fileID: 4957907048669915448}
   bonusTimeText: {fileID: 1973852338}
   bestScoreText: {fileID: 475938521}
   bestTimeText: {fileID: 1039788605}
