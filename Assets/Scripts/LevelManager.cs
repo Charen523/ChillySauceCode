@@ -94,6 +94,8 @@ public class LevelManager : MonoBehaviour
         {
             AudioManager.Instance.audioSource[1].PlayOneShot(AudioManager.Instance.sfxClips[0]);
             levelSelectCanvas.SetActive(false);
+            // 스타트 씬에서 레벨 선택 화면이 꺼지면 다시 스타트 버튼이 깜빡이도록 false로 값 변경
+            StartBtn.isStartBtnPushed = false;
         }
     }
 
