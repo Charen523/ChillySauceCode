@@ -84,13 +84,13 @@ public class GameManager : MonoBehaviour
         /*게임시작 시 초기화할 데이터*/
         isMatching = false; // 매칭 상태 bool 초기화
         cardCount = Board.cardArrayLength; //현재 레벨에 따른 카드 개수 불러오기.
-        time = startTime; // 타이머 초기화
         timeFull.fillAmount = 1; // 시간 막대 UI 초기화
         MatchInvoke(); //Match사인 초기화.
         tryBoxAnim.SetBool("IsOver", false); //시도횟수 애니메이션 막기.
 
         /*난이도 변경*/
         startTime = startTime - 5 * (LevelManager.Instance.selectLevel - 1); //난이도에 따라 게임 시간 변경.
+        time = startTime; // 타이머 초기화
         bgmChangeTime = startTime / 5; // BGM 교체 시간을 총 게임 시간에 따라 변경.
 
         if (selectLevel == 4) //Fireball 생성
