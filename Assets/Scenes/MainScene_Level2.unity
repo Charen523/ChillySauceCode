@@ -522,6 +522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bf552b18c65d84b9e6e5291c9fc960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstCard: {fileID: 0}
+  secondCard: {fileID: 0}
   Explosion: {fileID: 2098390904379341941, guid: 6a831193c958d0748b5f61a0f3d990bd, type: 3}
   Fireball: {fileID: 1486402237147685211, guid: 096e459da9bbb0947985c0293e56ca21, type: 3}
   tryBoxAnim: {fileID: 1101368640}
@@ -536,12 +538,7 @@ MonoBehaviour:
   bonusTimeText: {fileID: 1973852338}
   bestScoreText: {fileID: 475938521}
   bestTimeText: {fileID: 1039788605}
-  firstCard: {fileID: 0}
-  secondCard: {fileID: 0}
   isMatching: 0
-  tryNum: 0
-  bestScore: 0
-  bestTime: 0
 --- !u!224 &408076502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1216,8 +1213,8 @@ Transform:
   m_GameObject: {fileID: 1096433939}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70685047, w: 0.707363}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.84203273, y: 0.84203273, z: 1.0525409}
+  m_LocalPosition: {x: 0.2835, y: 0.0608, z: 0}
+  m_LocalScale: {x: 0.8933631, y: 1.1286683, z: 1.0525409}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
